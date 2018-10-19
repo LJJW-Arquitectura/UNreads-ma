@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+import { GraphQLModule } from './graphql.module';
+import { BooksProvider } from '../providers/books/books';
 import { HomePage } from '../pages/home/home';
 
 @NgModule({
@@ -14,7 +16,8 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    GraphQLModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -24,7 +27,8 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BooksProvider
   ]
 })
 export class AppModule {}
