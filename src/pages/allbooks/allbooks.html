@@ -4,14 +4,37 @@
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title>ALL BOOKS</ion-title>
+		<ion-title>Libros</ion-title>
 	</ion-navbar>
 </ion-header>
 
 <ion-content> 
+	<ion-searchbar
+	[(ngModel)]="searchTerm"
+	(ionInput)="setFilteredItems()">
+	</ion-searchbar>
 	<ion-list inset>
-		<ion-item *ngFor="let book of books$ | async" > 
-			{{book.title}}
-		</ion-item>
+		<ion-card *ngFor="let book of books_filtered$ | async" > 
+			<ion-card-content>
+				<ion-card-title>
+					{{book.title}}
+				</ion-card-title>
+				<p>{{book.plot.slice(1,100)}} <i *ngIf=" book.plot.length > 50" >...</i></p>
+				<ion-row >
+					<ion-col text-left>
+						<button ion-button clear small color="primary">
+							<ion-icon name='text'></ion-icon>
+							Reseñar
+						</button>
+					</ion-col>
+					<ion-col text-right>
+						<button ion-button clear small color="primary">
+							<ion-icon name='arrow-dropright'></ion-icon>
+							Ver mas 
+						</button>
+					</ion-col>
+				</ion-row>
+			</ion-card-content>
+		</ion-card>
 	</ion-list>	
 </ion-content>  

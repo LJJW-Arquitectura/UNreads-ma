@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
 import { Observable } from 'rxjs/Observable';  
+import { filter } from 'rxjs/operators';  
 
 /**
  * Generated class for the AllbooksPage page.
@@ -18,11 +19,24 @@ import { Observable } from 'rxjs/Observable';
 export class AllbooksPage {
 
   books$: Observable<any>;
-
+  books_filtered$: Observable<any>;
+  searchTerm: string = '';
+  pro
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public provider: BooksProvider) {
+  	this.pro = provider
     this.books$ = provider.getAllBooks();
+    this.books_filtered$ = this.books$;
+  } 
+
+  setFilteredItems(){
+  	
+  	this.books_filtered$.pipe(filter(book => book.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1))
+  	this.books_filtered$ = this.pro.getAllBooks();
+  	console.log(this.books_filtered$.toString())
   }
+
+
 
 }

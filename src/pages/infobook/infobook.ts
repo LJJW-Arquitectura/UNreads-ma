@@ -21,8 +21,7 @@ export class InfobookPage {
     this.book$ = provider.getBookById();
   }
 
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad InfobookPage');
-  // }
+   ionViewDidLoad() {
+   }
 
 }

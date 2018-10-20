@@ -18,7 +18,7 @@ const queryAllBooks = gql`
 `;
 
 const queryBookById = gql`  
-query {
+query($id: Int!){
   bookById(book_id: $id) {
     id
     title
@@ -62,7 +62,7 @@ export class BooksProvider {
     const queryWatcher = this.apollo.watchQuery<any>({
       query: queryBookById,
       variables: {
-        id: 1
+        id: 13
       }
     });
 
