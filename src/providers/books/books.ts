@@ -16,6 +16,28 @@ const queryAllBooks = gql`
     }
   }
 `;
+
+const queryBookById = gql`  
+query {
+  bookById(book_id: $id) {
+    id
+    title
+    publisher
+    numPages
+    isbn
+    plot
+    authors
+    genres
+    cover {
+      fileName
+      fileType
+      fileDownloadUri
+      size
+    }
+  }
+}
+`;
+
 /*
   Generated class for the BooksProvider provider.
 
@@ -36,4 +58,15 @@ export class BooksProvider {
       .map(result => result.data.allBooks);;
   }
 
+  getBookById(): Observable<any> {
+    const queryWatcher = this.apollo.watchQuery<any>({
+      query: queryBookById,
+      variables: {
+        id: 1
+      }
+    });
+
+    return queryWatcher.valueChanges
+      .map(result => result.data.bookById);
+  }
 }

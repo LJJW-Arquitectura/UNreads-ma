@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BooksProvider } from '../../providers/books/books';
+import { Observable } from 'rxjs/Observable';  
 
 /**
  * Generated class for the InfobookPage page.
@@ -14,12 +16,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'infobook.html',
 })
 export class InfobookPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  book$: Observable<any>;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider) {
+    this.book$ = provider.getBookById();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InfobookPage');
-  }
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad InfobookPage');
+  // }
 
 }
