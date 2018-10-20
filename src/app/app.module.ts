@@ -6,13 +6,28 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { GraphQLModule } from './graphql.module';
+
 import { BooksProvider } from '../providers/books/books';
 import { HomePage } from '../pages/home/home';
+import { AllbooksPage } from '../pages/allbooks/allbooks';
+import { AllbooklistPage } from '../pages/allbooklist/allbooklist';
+import { CreatereviewPage } from '../pages/createreview/createreview';
+import { CreatesuggestionPage } from '../pages/createsuggestion/createsuggestion';
+import { InfobookPage } from '../pages/infobook/infobook';
+import { InfobooklistPage } from '../pages/infobooklist/infobooklist';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
   MyApp,
-  HomePage
+  HomePage,
+  AllbooksPage,
+  AllbooklistPage,
+  CreatereviewPage,
+  CreatesuggestionPage,
+  InfobookPage,
+  InfobooklistPage,
+  LoginPage,
   ],
   imports: [
   BrowserModule,
@@ -22,7 +37,14 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
   MyApp,
-  HomePage
+  HomePage,
+  AllbooksPage,
+  AllbooklistPage,
+  CreatereviewPage,
+  CreatesuggestionPage,
+  InfobookPage,
+  InfobooklistPage,
+  LoginPage,
   ],
   providers: [
   StatusBar,

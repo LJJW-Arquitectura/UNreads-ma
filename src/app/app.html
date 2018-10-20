@@ -1,3 +1,4 @@
+
 <ion-menu [content]="mycontent">
 	<ion-header>
 		<ion-toolbar>
@@ -6,7 +7,7 @@
 	</ion-header>
 	<ion-content>
 		<ion-list>
-			<button menuClose ion-button full *ngFor="let p of pages" [navPush]=p >
+			<button menuClose ion-button full *ngFor="let p of pages" (click)="openPage(p)" >
 			   {{p.title}}
 			</button>
 		</ion-list>
@@ -14,3 +15,4 @@
 </ion-menu>
 
 <ion-nav  #mycontent [root]="rootPage"></ion-nav>
+
