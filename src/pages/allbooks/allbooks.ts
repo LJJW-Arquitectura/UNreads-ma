@@ -4,6 +4,8 @@ import { BooksProvider } from '../../providers/books/books';
 import { Observable } from 'rxjs/Observable';  
 import { InfobookPage } from '../infobook/infobook';
 import { CreatebookPage } from '../createbook/createbook';
+import { CreatereviewPage } from '../createreview/createreview';
+import { GlobalProvider } from '../../providers/global/global';
 
 /**
  * Generated class for the AllbooksPage page.
@@ -23,13 +25,18 @@ import { CreatebookPage } from '../createbook/createbook';
  	Allbooks$
  	searchTerm: string = '';
  	pro
- 	refresh = true
+	refresh = true
+	myId
+	user
  	constructor(public navCtrl: NavController, 
- 		public navParams: NavParams,
- 		public provider: BooksProvider) {
+				public navParams: NavParams,
+		 		public globalProvider: GlobalProvider, 
+ 				public provider: BooksProvider) {
  		this.pro = provider
  		provider.getAllBooks().subscribe(book => this.Allbooks$ = book);
- 		provider.getAllBooks().subscribe(book => this.books$ = book);
+		provider.getAllBooks().subscribe(book => this.books$ = book);
+		this.myId = globalProvider.authenticatedId 
+		this.user = globalProvider.user 
  	} 
  	setFilteredItems(){
  		this.pro.getAllBooks().subscribe(book => this.Allbooks$ = book);
@@ -39,9 +46,16 @@ import { CreatebookPage } from '../createbook/createbook';
  		return book.id;
  	}
 
-	itemTapped(event, book_id) {
+	viewMore(event, book_id) {
 		this.navCtrl.push(InfobookPage, {
-		id: book_id
+			id: book_id
+		});
+	}
+
+	createReview(event, book_id, book_title) {
+		this.navCtrl.push(CreatereviewPage, {
+			id: book_id,
+			title: book_title
 		});
 	}
 

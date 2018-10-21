@@ -138,6 +138,21 @@ const mutationCreateBook= gql`
   }
 `;
 
+const mutationCreateReview= gql`  
+  mutation($book_id: Int!, $user_id: Int!, $review: String!, $grade: Int!) {
+    createReview(review: {
+      book_id: $book_id, 
+      user_id: $user_id, 
+      review: $review, 
+      grade: $grade
+    }){
+      message
+    } 
+  }
+`;
+
+
+
 /*
   Generated class for the BooksProvider provider.
 
@@ -221,6 +236,17 @@ export class BooksProvider {
       error => console.log('Mutation Error:', error));
   }
   
+  createReview(book_id: number, user_id: number, review: string, grade: number): Observable<any> {  
+    return this.apollo.mutate({
+      mutation: mutationCreateReview,
+      variables: {
+        book_id: book_id, 
+        user_id: user_id, 
+        review: review, 
+        grade: grade
+      }
+    })
+  }
 
   createBook(title: string, publisher: string, numPages: number, isbn: string, plot: string, authors: Array<string>, genres:  Array<string>): Observable<any> {  
     return this.apollo.mutate({

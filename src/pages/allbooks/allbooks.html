@@ -25,14 +25,14 @@
 				</ion-card-title>
 				<p>{{book.plot.slice(1,100)}} <i *ngIf=" book.plot.length > 50" >...</i></p>
 				<ion-row >
-					<ion-col text-left>
-						<button ion-button clear small color="primary">
+					<ion-col *ngIf="user" text-left>
+						<button ion-button clear small color="primary" (click)="createReview($event, book.id, book.title)">
 							<ion-icon name='text'></ion-icon>
 							Reseñar
 						</button>
 					</ion-col>
 					<ion-col text-right>
-						<button ion-button clear small color="primary" (click)="itemTapped($event, book.id)">
+						<button ion-button clear small color="primary" (click)="viewMore($event, book.id)">
 							<ion-icon name='arrow-dropright'></ion-icon>
 							Ver mas 
 						</button>

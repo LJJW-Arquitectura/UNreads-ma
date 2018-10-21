@@ -18,14 +18,14 @@ import { Observable } from 'rxjs/Observable';
  	templateUrl: 'infobook.html',
  })
  export class InfobookPage {
- 	book_id: number;
- 	book$: Observable<any>;
-   reviews$: Observable<any>;
-   suggestions$: Observable<any>;
-   aux = []
-   auxSuggestiontitle = []
-   auxSuggestionid = []
-   readed
+    book_id: number;
+    book$: Observable<any>;
+    reviews$: Observable<any>;
+    suggestions$: Observable<any>;
+    aux = []
+    auxSuggestiontitle = []
+    auxSuggestionid = []
+    readed
    constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider,public provideruser: UserProvider,public globalProvider: GlobalProvider) {
      this.readed = false     
      this.book_id = navParams.get('id');
