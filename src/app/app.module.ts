@@ -17,6 +17,8 @@ import { CreatesuggestionPage } from '../pages/createsuggestion/createsuggestion
 import { InfobookPage } from '../pages/infobook/infobook';
 import { InfobooklistPage } from '../pages/infobooklist/infobooklist';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+import { GlobalProvider } from '../providers/global/global';
 
 import { StarRatingModule } from 'ionic3-star-rating';
 
@@ -31,6 +33,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
   InfobookPage,
   InfobooklistPage,
   LoginPage,
+  RegisterPage,
   ],
   imports: [
   BrowserModule,
@@ -49,13 +52,15 @@ import { StarRatingModule } from 'ionic3-star-rating';
   InfobookPage,
   InfobooklistPage,
   LoginPage,
+  RegisterPage,
   ],
   providers: [
   StatusBar,
   SplashScreen,
   {provide: ErrorHandler, useClass: IonicErrorHandler},
   BooksProvider,
-  UserProvider
+  UserProvider,
+    GlobalProvider
   ]
 })
 

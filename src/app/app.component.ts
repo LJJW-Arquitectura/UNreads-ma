@@ -23,7 +23,8 @@ export class MyApp {
     this.pages = [
     { title: 'Login', component: LoginPage },
     { title: 'Libros', component: AllbooksPage },
-    { title: 'InfoBook', component: InfobookPage }
+    { title: 'InfoBook', component: InfobookPage },
+    { title: 'Listas', component: AllbooklistPage }
     ];
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

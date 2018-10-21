@@ -16,7 +16,7 @@ const queryAllUsers = gql`
 `;
 
 const queryUserByUsernameAndPassword = gql`  
-  query($username:String, $password:String) {
+  query($username:String!, $password:String!) {
   	userByUsernameAndPassword(username: $username, password: $password){
       username
       password
@@ -55,7 +55,6 @@ const queryuserById = gql`
 */
 @Injectable()
 export class UserProvider {
-	id:any;
 
   constructor(private apollo: Apollo) {
   }
@@ -87,9 +86,10 @@ export class UserProvider {
     const queryWatcher = this.apollo.watchQuery<any>({
       query: queryUserByUsernameAndPassword,
       variables: {
-      	username: "aseasyas",
-      	password: "123"
-      }
+      	username: Username,
+      	password: Password
+      },
+      fetchPolicy: 'network-only'
     });
     return queryWatcher.valueChanges
 			.map(result => result.data.userByUsernameAndPassword)
