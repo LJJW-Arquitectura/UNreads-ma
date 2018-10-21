@@ -40,12 +40,6 @@ export class MyApp {
     { title: 'Crear Libro', component: CreatebookPage ,needLogin: false, noNeedLogin: false},
     { title: 'Crear sugerencia', component: CreatesuggestionPage ,needLogin: false, noNeedLogin: false},
     ];
-    if(this.global.authenticatedId == 0){
-      this.username = "Guest";
-    }
-    else{
-      this.username = "Person";
-    }
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -63,18 +57,27 @@ export class MyApp {
     }
   }
 
+  isLoggedIn(){
+    if(this.global.authenticatedId == 0){
+      this.username = "Guest";
+      return false;
+    }else{
+      this.provideruser.getUserById(this.global.authenticatedId).subscribe(user =>{
+          this.username = user.username})
+      return true;
+    }
+  }
+
+  logout(){
+    this.global.authenticatedId = 0;
+    this.username = "Guest";
+  }
+
   openPage(page, 
     ) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
-    if(this.global.authenticatedId == 0){
-      this.username = "Guest";
-    }
-    else{
-      this.provideruser.getUserById(this.global.authenticatedId).subscribe(user =>{
-          this.username = user.username})
-    }
   }
 
 
