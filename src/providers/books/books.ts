@@ -108,6 +108,12 @@ mutation($user: String!, $name: String!,$user_id: Int!,$books: [Int]!) {
 }
 `;
 
+const mutationAddBookToReadlist = gql`  
+mutation($user_id: Int!,$book_id: Int!) {
+  addBookToReadlist(user_id:$user_id,book:$book_id)
+}
+`;
+
 const queryReadbooks = gql`  
 query readbooks($id: Int!){
   readbooks(user_id:$id){
@@ -203,8 +209,21 @@ export class BooksProvider {
       error => console.log('Mutation Error:', error));
   }
 
-  createBook(title: string, publisher: string, numPages: number, isbn: string, plot: string, authors: Array<string>, genres:  Array<string>): void {  
+  addBookToReadlist( User_id: number, Book: number): void {  
     this.apollo.mutate({
+      mutation: mutationAddBookToReadlist,
+      variables: {
+        user_id: User_id,
+        book_id: Book
+      }
+    })
+    .subscribe(response => console.log(response.data),
+      error => console.log('Mutation Error:', error));
+  }
+  
+
+  createBook(title: string, publisher: string, numPages: number, isbn: string, plot: string, authors: Array<string>, genres:  Array<string>): Observable<any> {  
+    return this.apollo.mutate({
       mutation: mutationCreateBook,
       variables: {
         title: title,
@@ -216,8 +235,6 @@ export class BooksProvider {
         genres: genres
       }
     })
-    .subscribe(response => console.log(response.data),
-      error => console.log('Mutation Error:', error));
   }
 
   getBooklistByuser(userid: number): Observable<any> {
