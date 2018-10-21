@@ -22,16 +22,13 @@ export class MybooklistPage {
 
   	Alllist$
  	lists$
- 	pro:BooksProvider
  	searchTerm: string = '';
  	myid
  	constructor(public navCtrl: NavController, 
  		public navParams: NavParams,
  		public provider: BooksProvider,
  		public globalprovider: GlobalProvider) {
- 		this.pro = provider
- 		this.myid = globalprovider.authenticatedId
- 		console.log(this.myid)
+ 		this.myid = globalprovider.authenticatedId 		
  		provider.getBooklistByuser(this.myid).subscribe(list => this.Alllist$ = list);
  		provider.getBooklistByuser(this.myid).subscribe(list => this.lists$ = list);
  		
@@ -39,7 +36,7 @@ export class MybooklistPage {
 
 
  	setFilteredItems(){
- 		this.pro.getBooklistByuser(this.myid).subscribe(list => this.Alllist$ = list);
+ 		this.provider.getBooklistByuser(this.myid).subscribe(list => this.Alllist$ = list);
  		this.lists$ = this.Alllist$.filter((item) => item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1)
  	}
 
@@ -53,6 +50,9 @@ export class MybooklistPage {
  		});
  	}
 
+ 	ionViewDidEnter(){
+ 		if(this.Alllist$ != undefined)this.setFilteredItems()
+ 	}
  	createBooklist(){
  		this.navCtrl.push(CreatebooklistPage);	
  	}

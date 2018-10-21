@@ -54,6 +54,7 @@ export class CreatebooklistPage {
 
 	createBooklist(){
 		this.provider.createBooklist(this.name,this.user,this.myId,this.booklist)
+		this.navCtrl.pop();
 	}
 
 }

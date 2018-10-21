@@ -33,7 +33,6 @@ export class MyApp {
     this.pages = [
     { title: 'Login', component: LoginPage ,needLogin: false, noNeedLogin: true},
     { title: 'Libros', component: AllbooksPage ,needLogin: false, noNeedLogin: false},
-    { title: 'InfoBook', component: InfobookPage ,needLogin: false, noNeedLogin: false},
     { title: 'Listas', component: AllbooklistPage ,needLogin: false, noNeedLogin: false},
     { title: 'Mis Listas', component: MybooklistPage ,needLogin: true, noNeedLogin: false}
     ];
