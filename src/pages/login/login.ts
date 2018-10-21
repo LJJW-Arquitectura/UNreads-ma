@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { UserProvider } from '../../providers/user/user';
-
+import { GlobalProvider } from "../../providers/global/global";
 
 /**
  * Generated class for the LoginPage page.
@@ -20,13 +20,13 @@ export class LoginPage {
 
 	username:string;
 	password:string;
-	user$:Observable<any>;
-	text:string;
+	user$
+	id$
 
   constructor(public navCtrl: NavController, 
   						public navParams: NavParams,
-  						public provider: UserProvider) {
-  	this.text = "logg"
+  						public provider: UserProvider,
+  						public global: GlobalProvider) {
   }
 
   ionViewDidLoad() {
@@ -35,7 +35,8 @@ export class LoginPage {
   login(){
   	console.log("Username: "+this.username)
   	console.log("Password: "+this.password)
-  	this.user$ = this.provider.getUserByUsernameAndPassword(this.username,this.password);
+  	this.provider.getUserByUsernameAndPassword(this.username,this.password).subscribe(user => this.user$ = user);
+  	console.log(this.user$)
   }
   goRegister(){
   	this.navCtrl.push(RegisterPage);

@@ -16,7 +16,7 @@ const queryAllUsers = gql`
 `;
 
 const queryUserByUsernameAndPassword = gql`  
-  query($username:String, $password:String) {
+  query($username:String!, $password:String!) {
   	userByUsernameAndPassword(username: $username, password: $password){
       username
       password
@@ -47,7 +47,6 @@ const mutationCreateUser = gql`
 */
 @Injectable()
 export class UserProvider {
-	id:any;
 
   constructor(private apollo: Apollo) {
   }
@@ -80,7 +79,8 @@ export class UserProvider {
       variables: {
       	username: "aseasyas",
       	password: "123"
-      }
+      },
+      fetchPolicy: 'network-only'
     });
     return queryWatcher.valueChanges
 			.map(result => result.data.userByUsernameAndPassword)

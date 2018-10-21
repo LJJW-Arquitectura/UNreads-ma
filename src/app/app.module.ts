@@ -17,6 +17,8 @@ import { CreatesuggestionPage } from '../pages/createsuggestion/createsuggestion
 import { InfobookPage } from '../pages/infobook/infobook';
 import { InfobooklistPage } from '../pages/infobooklist/infobooklist';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+import { GlobalProvider } from '../providers/global/global';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { LoginPage } from '../pages/login/login';
   InfobookPage,
   InfobooklistPage,
   LoginPage,
+  RegisterPage,
   ],
   imports: [
   BrowserModule,
@@ -46,13 +49,15 @@ import { LoginPage } from '../pages/login/login';
   InfobookPage,
   InfobooklistPage,
   LoginPage,
+  RegisterPage,
   ],
   providers: [
   StatusBar,
   SplashScreen,
   {provide: ErrorHandler, useClass: IonicErrorHandler},
   BooksProvider,
-  UserProvider
+  UserProvider,
+    GlobalProvider
   ]
 })
 
