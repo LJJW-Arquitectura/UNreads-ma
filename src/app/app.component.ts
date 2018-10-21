@@ -24,18 +24,18 @@ export class MyApp {
   myIcon: string;
   @ViewChild(Nav) nav: Nav;
   rootPage:any = AllbooksPage;
-  pages: Array<{title: string, component: any, openTab? : any}>;
+  public pages: Array<{title: string, component: any, openTab? : any,needLogin?: boolean,noNeedLogin?: boolean}>;
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen, 
     public global: GlobalProvider,public provideruser: UserProvider) {
 
     this.pages = [
-    { title: 'Login', component: LoginPage },
-    { title: 'Libros', component: AllbooksPage },
-    { title: 'InfoBook', component: InfobookPage },
-    { title: 'Listas', component: AllbooklistPage },
-    { title: 'Mis Listas', component: MybooklistPage }
+    { title: 'Login', component: LoginPage ,needLogin: false, noNeedLogin: true},
+    { title: 'Libros', component: AllbooksPage ,needLogin: false, noNeedLogin: false},
+    { title: 'InfoBook', component: InfobookPage ,needLogin: false, noNeedLogin: false},
+    { title: 'Listas', component: AllbooklistPage ,needLogin: false, noNeedLogin: false},
+    { title: 'Mis Listas', component: MybooklistPage ,needLogin: true, noNeedLogin: false}
     ];
     if(this.global.authenticatedId == 0){
       this.username = "Guest";
@@ -51,6 +51,15 @@ export class MyApp {
       
     });
   }
+
+  canShow(page){
+    if(this.global.authenticatedId == 0){
+      return !page.needLogin
+    }else{
+      return !page.noNeedLogin
+    }
+  }
+
   openPage(page, 
     ) {
     // Reset the content nav to have just this page

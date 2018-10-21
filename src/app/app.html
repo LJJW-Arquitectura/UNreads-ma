@@ -17,10 +17,13 @@
 				</ion-col>
 			</ion-row>
 		</ion-grid>
-		<ion-list>
-			<button menuClose ion-button full *ngFor="let p of pages" (click)="openPage(p)" >
-			   {{p.title}}
-			</button>
+		<ion-list>			
+			<span *ngFor="let p of pages">
+				<button *ngIf="canShow(p)" menuClose ion-button full  (click)="openPage(p)" >
+					{{p.title}}
+				</button>
+			</span>
+			
 		</ion-list>
 	</ion-content>
 </ion-menu>
