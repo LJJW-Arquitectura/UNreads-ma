@@ -45,14 +45,20 @@ export class LoginPage {
   	console.log("Username: "+this.username)
   	console.log("Password: "+this.password)
     //Esta es la linea que no se digna funcionar hasta no darle doble click
-  	this.provider.getUserByUsernameAndPassword(this.username,this.password).subscribe(user => this.user$ = user);
+  	this.provider.getUserByUsernameAndPassword(this.username,this.password).subscribe(user =>
+    {
+      console.log("AuthId: "+user.id)
+      this.global.authenticatedId = user.id;
+      this.presentToast();
+    });
+    
     //yep, esa
-    //mostramos el id del usuario autenticado a todo el resto de la aplicacion
+    /*mostramos el id del usuario autenticado a todo el resto de la aplicacion
     if(this.user$ != undefined){
       console.log("AuthId: "+this.user$.id)
       this.global.authenticatedId = this.user$.id;
       this.presentToast();
-    }
+    }*/
   }
   goRegister(){
   	this.navCtrl.push(RegisterPage);
