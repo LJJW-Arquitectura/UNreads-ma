@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { GraphQLModule } from './graphql.module';
 
 import { BooksProvider } from '../providers/books/books';
+import { UserProvider } from '../providers/user/user';
 import { HomePage } from '../pages/home/home';
 import { AllbooksPage } from '../pages/allbooks/allbooks';
 import { AllbooklistPage } from '../pages/allbooklist/allbooklist';
@@ -50,7 +51,8 @@ import { LoginPage } from '../pages/login/login';
   StatusBar,
   SplashScreen,
   {provide: ErrorHandler, useClass: IonicErrorHandler},
-  BooksProvider
+  BooksProvider,
+  UserProvider
   ]
 })
 
