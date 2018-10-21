@@ -26,7 +26,7 @@ export class MyApp {
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen, 
-    public global: GlobalProvider) {
+    public global: GlobalProvider,public provideruser: UserProvider) {
 
     this.pages = [
     { title: 'Login', component: LoginPage },
@@ -49,7 +49,7 @@ export class MyApp {
     });
   }
   openPage(page, 
-    public provideruser: UserProvider) {
+    ) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
@@ -57,7 +57,7 @@ export class MyApp {
       this.username = "Guest";
     }
     else{
-      provideruser.getUserById(review[i].user_id).subscribe(user =>{
+      this.provideruser.getUserById(review[i].user_id).subscribe(user =>{
           this.username = user.username})
     }
   }
