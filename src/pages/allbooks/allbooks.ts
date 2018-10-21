@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
 import { Observable } from 'rxjs/Observable';  
-import { filter } from 'rxjs/operators';  
 import { InfobookPage } from '../infobook/infobook';
 
 /**

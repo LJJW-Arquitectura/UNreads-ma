@@ -20,6 +20,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { GlobalProvider } from '../providers/global/global';
 import { MybooklistPage } from '../pages/mybooklist/mybooklist';
+import { ReadlistPage } from '../pages/readlist/readlist';
 import { CreatebooklistPage } from '../pages/createbooklist/createbooklist';
 
 import { StarRatingModule } from 'ionic3-star-rating';
@@ -38,6 +39,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
   RegisterPage,
   MybooklistPage,
   CreatebooklistPage,
+  ReadlistPage,
   ],
   imports: [
   BrowserModule,
@@ -59,6 +61,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
   RegisterPage,
   MybooklistPage,
   CreatebooklistPage,
+  ReadlistPage,
   ],
   providers: [
   StatusBar,

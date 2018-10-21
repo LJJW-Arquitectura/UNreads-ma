@@ -108,6 +108,14 @@ mutation($user: String!, $name: String!,$user_id: Int!,$books: [Int]!) {
 }
 `;
 
+const queryReadbooks = gql`  
+query readbooks($id: Int!){
+  readbooks(user_id:$id){
+    books
+  }
+}
+`;
+
 /*
   Generated class for the BooksProvider provider.
 
@@ -150,6 +158,19 @@ export class BooksProvider {
 
     return queryWatcher.valueChanges
     .map(result => result.data.allBooklist);
+  }
+
+  getReadbooks(User_id:number): Observable<any> {
+    const queryWatcher = this.apollo.watchQuery<any>({
+      query: queryReadbooks,
+      variables:{
+        id: User_id
+      },
+      fetchPolicy: 'network-only'
+    });
+
+    return queryWatcher.valueChanges
+    .map(result => result.data.readbooks);
   }
 
   createBooklist(Name: string, User: string, User_id: number, Books: any[]): void {  

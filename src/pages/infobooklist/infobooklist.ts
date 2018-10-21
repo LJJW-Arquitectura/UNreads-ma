@@ -29,7 +29,6 @@ import { InfobookPage } from '../infobook/infobook';
  			provider.getBookById(this.list$.books[i]).subscribe(book => this.books$.push(book))
  		} 		
  		this.ready = true
- 		console.log(this.books$)
  	}
 
  	ionViewDidLoad() {
