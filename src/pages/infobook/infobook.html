@@ -36,7 +36,7 @@
 	<ion-card *ngFor="let review of (reviews$| async) ;let idx = index ">
 		<ion-card-content>
 			<p>
-			<strong>Usuario:</strong>{{aux[idx]}}<br>
+			<strong>Usuario: </strong>{{aux[idx]}}<br>
 			<strong>Reseña: </strong>{{review.review}}
 			</p>
 			<ionic3-star-rating 
@@ -54,7 +54,7 @@
 	<ion-card *ngFor="let suggestion of (suggestions$| async); let sugidx = index ">
 		<ion-card-content>
 			<p>
-			<strong>Libro sugerido:</strong>{{auxSuggestiontitle[sugidx]}}<br>
+			<strong>Libro sugerido: </strong>{{auxSuggestiontitle[sugidx]}}<br>
 			<strong>Razón: </strong>{{suggestion.reason}}
 			</p>
 			<ion-row >

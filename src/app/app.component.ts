@@ -37,7 +37,6 @@ export class MyApp {
     { title: 'Listas', component: AllbooklistPage ,needLogin: false, noNeedLogin: false},
     { title: 'Mis listas', component: MybooklistPage ,needLogin: true, noNeedLogin: false},
     { title: 'Mis libros leidos', component: ReadlistPage ,needLogin: true, noNeedLogin: false},
-    { title: 'Create Libro', component: CreatebookPage ,needLogin: false, noNeedLogin: false},
     ];
     if(this.global.authenticatedId == 0){
       this.username = "Guest";
