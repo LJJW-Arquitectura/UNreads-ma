@@ -36,4 +36,10 @@ import { InfobookPage } from '../infobook/infobook';
  		console.log('ionViewDidLoad InfobooklistPage');
  	}
 
+ 	itemTapped(event, book_id) {
+		this.navCtrl.push(InfobookPage, {
+		id: book_id
+		});
+	}
+
  }
