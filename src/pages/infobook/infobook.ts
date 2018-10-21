@@ -19,13 +19,14 @@ export class InfobookPage {
   book_id: number;
   book$: Observable<any>;
   reviews$: Observable<any>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider) {
     this.book_id = navParams.get('id');
     this.book$ = provider.getBookById(this.book_id);
     this.reviews$ = provider.getBookReviewsByCode(this.book_id);
   }
 
-   ionViewDidLoad() {
-   }
+  ionViewDidLoad() {
+  }
 
 }

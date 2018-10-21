@@ -18,6 +18,8 @@ import { InfobookPage } from '../pages/infobook/infobook';
 import { InfobooklistPage } from '../pages/infobooklist/infobooklist';
 import { LoginPage } from '../pages/login/login';
 
+import { StarRatingModule } from 'ionic3-star-rating';
+
 @NgModule({
   declarations: [
   MyApp,
@@ -33,7 +35,8 @@ import { LoginPage } from '../pages/login/login';
   imports: [
   BrowserModule,
   IonicModule.forRoot(MyApp),
-  GraphQLModule
+  GraphQLModule,
+  StarRatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -39,6 +39,14 @@ const mutationCreateUser = gql`
     }
   }
 `;
+
+const queryuserById = gql`  
+  query($user_id: Int!) {
+  	userById(user_id: $user_id){
+      username
+    }
+  }
+`;
 /*
   Generated class for the BooksProvider provider.
 
@@ -73,7 +81,8 @@ export class UserProvider {
 	  })
 	  .subscribe(response => console.log(response.data),
 	             error => console.log('Mutation Error:', error));
-	}
+  }
+  
 	getUserByUsernameAndPassword(Username: string, Password: string): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
       query: queryUserByUsernameAndPassword,
@@ -84,6 +93,17 @@ export class UserProvider {
     });
     return queryWatcher.valueChanges
 			.map(result => result.data.userByUsernameAndPassword)
+  }
+
+  getUserById(id: number): Observable<any> {
+    const queryWatcher = this.apollo.watchQuery<any>({
+      query: this.getUserById,
+      variables: {
+      	user_id: id
+      }
+    });
+    return queryWatcher.valueChanges
+			.map(result => result.data.userById)
   }
 
 }

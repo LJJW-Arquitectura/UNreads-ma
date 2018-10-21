@@ -32,8 +32,23 @@
 		  </ion-card>
 	</ion-list>	
 
-	<ion-item *ngFor="let review of reviews$ | async">
-		{{review.review}}
-	</ion-item>
+	<h1>Reseñas:</h1>
+	<ion-card *ngFor="let review of reviews$ | async">
+		<ion-card-content>
+			<p>
+			<strong>Usuario:</strong>Wilson<br>
+			<strong>Reseña: </strong>{{review.review}}
+			</p>
+			<ionic3-star-rating 
+				activeIcon = "ios-star"
+				defaultIcon = "ios-star-outline"
+				activeColor = "#488aff" 
+				defaultColor = "#b5b5b5"
+				readonly="true"
+				[rating]= review.grade>
+			</ionic3-star-rating>
+		</ion-card-content>
+	</ion-card>
+
 
 </ion-content>
