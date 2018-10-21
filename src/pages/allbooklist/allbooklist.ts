@@ -19,8 +19,8 @@ import { InfobooklistPage } from '../infobooklist/infobooklist';
  export class AllbooklistPage {
  	Alllist$
  	lists$
- 	pro:BooksProvider
  	searchTerm: string = '';
+ 	pro:BooksProvider
 
  	constructor(public navCtrl: NavController, 
  		public navParams: NavParams,

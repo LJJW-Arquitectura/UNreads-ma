@@ -59,6 +59,7 @@ export class LoginPage {
       if(user!=undefined){
         console.log("AuthId: "+user.id)
         this.global.authenticatedId = user.id;
+        this.global.user = user.username;
         this.presentToast();
         this.navCtrl.setRoot(AllbooksPage);
         this.navCtrl.popToRoot();

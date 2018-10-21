@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
 import { Observable } from 'rxjs/Observable';
 import { InfobooklistPage } from '../infobooklist/infobooklist';
+import { CreatebooklistPage } from '../createbooklist/createbooklist';
 import {GlobalProvider} from '../../providers/global/global';
 
 /**
@@ -30,10 +31,8 @@ export class MybooklistPage {
  		public globalprovider: GlobalProvider) {
  		this.pro = provider
  		this.myid = globalprovider.authenticatedId
-
- 		provider.getBooklistByuser(this.myid).subscribe(list => {this.Alllist$ = list
- 			console.log(list)
- 		});
+ 		console.log(this.myid)
+ 		provider.getBooklistByuser(this.myid).subscribe(list => this.Alllist$ = list);
  		provider.getBooklistByuser(this.myid).subscribe(list => this.lists$ = list);
  		
  	} 
@@ -52,6 +51,10 @@ export class MybooklistPage {
  		this.navCtrl.push(InfobooklistPage, {
  			list: _list
  		});
+ 	}
+
+ 	createBooklist(){
+ 		this.navCtrl.push(CreatebooklistPage);	
  	}
 
 }

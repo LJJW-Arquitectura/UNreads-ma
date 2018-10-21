@@ -7,91 +7,104 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 const queryAllBooks = gql`  
-  query allBooks {
-    allBooks {
-      id
-      title
-      authors
-      numPages
-      plot
-    }
+query allBooks {
+  allBooks {
+    id
+    title
+    authors
+    numPages
+    plot
   }
+}
 `;
 
 const queryBookById = gql`  
-  query($id: Int!){
-    bookById(book_id: $id) {
-      id
-      title
-      publisher
-      numPages
-      isbn
-      plot
-      authors
-      genres
-      cover {
-        fileName
-        fileType
-        fileDownloadUri
-        size
-      }
+query($id: Int!){
+  bookById(book_id: $id) {
+    id
+    title
+    publisher
+    numPages
+    isbn
+    plot
+    authors
+    genres
+    cover {
+      fileName
+      fileType
+      fileDownloadUri
+      size
     }
   }
+}
 `;
 
 const queryBookReviewsByCode = gql`  
-  query($id: Int!){
-    bookReviewsByCode(code: $id) {
-      results {
-        review_id
-        book_id
-        user_id
-        creationdate
-        review
-        grade
-      }
+query($id: Int!){
+  bookReviewsByCode(code: $id) {
+    results {
+      review_id
+      book_id
+      user_id
+      creationdate
+      review
+      grade
     }
   }
+}
 `;
 
 const queryBookSuggestionsByCode = gql`  
-  query($id: Int!){
-    bookSuggestionsByCode(code: $id) {
-      results {
-        suggestion_id
-        book_id1
-        book_id2
-        reason
-      }
+query($id: Int!){
+  bookSuggestionsByCode(code: $id) {
+    results {
+      suggestion_id
+      book_id1
+      book_id2
+      reason
     }
   }
+}
 `;
 
 
 const queryAllBooklist = gql`  
 query allBooklist{
-    allBooklist{
-      name
-      user
-      user_id
-      date_update
-      date_creation
-      books
-    }
+  allBooklist{
+    name
+    user
+    user_id
+    date_update
+    date_creation
+    books
+  }
 }
 `;
 
 
 const querybooklistsByUser = gql`  
 query booklistsByUser($id: Int!){
-    booklistsByUser(user_id: $id){
-      name
-      user
-      user_id
-      date_update
-      date_creation
-      books
-    }
+  booklistsByUser(user_id: $id){
+    name
+    user
+    user_id
+    date_update
+    date_creation
+    books
+  }
+}
+`;
+
+const mutationCreateBooklist = gql`  
+mutation($user: String!, $name: String!,$user_id: Int!,$books: [Int]!) {
+  createBooklist(booklist:{
+    name: $name ,
+    user: $user,
+    user_id: $user_id,
+    books: $books
+  }){
+    name
+  }
 }
 `;
 
@@ -100,7 +113,7 @@ query booklistsByUser($id: Int!){
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
-*/
+  */
 @Injectable()
 export class BooksProvider {
 
@@ -113,7 +126,7 @@ export class BooksProvider {
     });
 
     return queryWatcher.valueChanges
-      .map(result => result.data.allBooks);
+    .map(result => result.data.allBooks);
   }
 
   getBookById(book_id: number): Observable<any> {
@@ -126,7 +139,7 @@ export class BooksProvider {
     });
 
     return queryWatcher.valueChanges
-      .map(result => result.data.bookById);
+    .map(result => result.data.bookById);
   }
 
   getAllBooklist(): Observable<any> {
@@ -136,9 +149,23 @@ export class BooksProvider {
     });
 
     return queryWatcher.valueChanges
-      .map(result => result.data.allBooklist);
+    .map(result => result.data.allBooklist);
   }
-  
+
+  createBooklist(Name: string, User: string, User_id: number, Books: any[]): void {  
+    this.apollo.mutate({
+      mutation: mutationCreateBooklist,
+      variables: {
+        name: Name ,
+        user: User,
+        user_id: User_id,
+        books: Books
+      }
+    })
+    .subscribe(response => console.log(response.data),
+      error => console.log('Mutation Error:', error));
+  }
+
   getBooklistByuser(userid: number): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
       query: querybooklistsByUser,
@@ -149,7 +176,7 @@ export class BooksProvider {
     });
 
     return queryWatcher.valueChanges
-      .map(result => result.data.booklistsByUser);
+    .map(result => result.data.booklistsByUser);
   }
   getBookReviewsByCode(code: number): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
@@ -161,7 +188,7 @@ export class BooksProvider {
     });
 
     return queryWatcher.valueChanges
-      .map(result => result.data.bookReviewsByCode.results);
+    .map(result => result.data.bookReviewsByCode.results);
   }
 
   getBookSuggestionsByCode(code: number): Observable<any> {
@@ -174,7 +201,7 @@ export class BooksProvider {
     });
 
     return queryWatcher.valueChanges
-      .map(result => result.data.bookSuggestionsByCode.results);
+    .map(result => result.data.bookSuggestionsByCode.results);
   }
 
 }
