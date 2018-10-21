@@ -21,7 +21,7 @@
 			</ion-card-title>
 			<p>Creador: {{list.user}}</p>
 			<p>Fecha de Modificacion: {{list.date_creation}}</p>
-			<button ion-button clear small color="primary">
+			<button ion-button clear small color="primary" (click)="itemTapped($event, list)">
 				<ion-icon name='arrow-dropright'></ion-icon>
 				Ver mas 
 			</button>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
 import { Observable } from 'rxjs/Observable';
+import { InfobooklistPage } from '../infobooklist/infobooklist';
+
 /**
  * Generated class for the AllbooklistPage page.
  *
@@ -28,9 +30,6 @@ import { Observable } from 'rxjs/Observable';
  		provider.getAllBooklist().subscribe(list => this.lists$ = list);
  	} 
 
- 	ionViewDidLoad() {
- 		console.log('ionViewDidLoad AllbooklistPage');
- 	}
 
  	setFilteredItems(){
  		this.pro.getAllBooklist().subscribe(list => this.Alllist$ = list);
@@ -39,6 +38,12 @@ import { Observable } from 'rxjs/Observable';
 
  	trackByFn(index, list) {
  		return list.name + list.user;
+ 	}
+
+ 	itemTapped(event, _list) {
+ 		this.navCtrl.push(InfobooklistPage, {
+ 			list: _list
+ 		});
  	}
 
  }
