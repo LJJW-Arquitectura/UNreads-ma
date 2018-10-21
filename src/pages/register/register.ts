@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular'; 
 import { UserProvider } from '../../providers/user/user';
+import { ToastController } from 'ionic-angular';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -24,11 +25,19 @@ export class RegisterPage {
   constructor(public navCtrl: NavController, 
   						public navParams: NavParams,
   						public viewCtrl: ViewController,
-  						public provider: UserProvider) {
+  						public provider: UserProvider,
+  						public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
+  }
+  presentToast() {
+    const toast = this.toastCtrl.create({
+      message: 'User was added successfully',
+      duration: 3000
+    });
+    toast.present();
   }
   register(){
   	if(this.username == undefined || 
@@ -42,8 +51,10 @@ export class RegisterPage {
   	}
   	console.log(this.password);
   	this.provider.createUser(this.username, this.password, this.email);
+  	this.presentToast();
   	this.viewCtrl.dismiss();
 
   }
+  
 
 }
