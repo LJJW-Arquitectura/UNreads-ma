@@ -39,7 +39,9 @@ export class LoginPage {
   	this.provider.getUserByUsernameAndPassword(this.username,this.password).subscribe(user => this.user$ = user);
     //yep, esa
     //mostramos el id del usuario autenticado a todo el resto de la aplicacion
-  	this.global.authenticatedId = this.user$.id;
+    if(this.user$ != ''){
+      this.global.authenticatedId = this.user$.id;
+    }
   }
   goRegister(){
   	this.navCtrl.push(RegisterPage);
