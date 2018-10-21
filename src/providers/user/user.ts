@@ -77,8 +77,8 @@ export class UserProvider {
     const queryWatcher = this.apollo.watchQuery<any>({
       query: queryUserByUsernameAndPassword,
       variables: {
-      	username: "aseasyas",
-      	password: "123"
+      	username: Username,
+      	password: Password
       },
       fetchPolicy: 'network-only'
     });

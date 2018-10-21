@@ -35,8 +35,11 @@ export class LoginPage {
   login(){
   	console.log("Username: "+this.username)
   	console.log("Password: "+this.password)
+    //Esta es la linea que no se digna funcionar hasta no darle doble click
   	this.provider.getUserByUsernameAndPassword(this.username,this.password).subscribe(user => this.user$ = user);
-  	console.log(this.user$)
+    //yep, esa
+    //mostramos el id del usuario autenticado a todo el resto de la aplicacion
+  	this.global.authenticatedId = this.user$.id;
   }
   goRegister(){
   	this.navCtrl.push(RegisterPage);
