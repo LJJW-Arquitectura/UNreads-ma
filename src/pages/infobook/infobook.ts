@@ -22,7 +22,8 @@ import { Observable } from 'rxjs/Observable';
    reviews$: Observable<any>;
    suggestions$: Observable<any>;
    aux = []
-   auxSuggestion = []
+   auxSuggestiontitle = []
+   auxSuggestionid = []
  	constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider,public provideruser: UserProvider) {
  		this.book_id = navParams.get('id');
  		this.book$ = provider.getBookById(this.book_id);
@@ -37,11 +38,17 @@ import { Observable } from 'rxjs/Observable';
      this.suggestions$.subscribe(suggestion =>{
       for (var i = 0; i < suggestion.length ; i++) {
         provider.getBookById(suggestion[i].book_id2).subscribe(bookSuggestion =>{
-          this.auxSuggestion.push(bookSuggestion.title)})
+          this.auxSuggestionid.push(bookSuggestion.id),
+          this.auxSuggestiontitle.push(bookSuggestion.title)})
         }
     });
- 	}
-
+   }
+   
+   itemTapped(event, book_id) {
+		this.navCtrl.push(InfobookPage, {
+		id: book_id
+		});
+	}
  	ionViewDidLoad() {
  	}
 

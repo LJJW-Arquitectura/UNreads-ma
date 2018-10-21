@@ -54,9 +54,17 @@
 	<ion-card *ngFor="let suggestion of (suggestions$| async); let sugidx = index ">
 		<ion-card-content>
 			<p>
-			<strong>Libro sugerido:</strong>{{auxSuggestion[sugidx]}}<br>
+			<strong>Libro sugerido:</strong>{{auxSuggestiontitle[sugidx]}}<br>
 			<strong>Razón: </strong>{{suggestion.reason}}
 			</p>
+			<ion-row >
+					<ion-col text-right>
+						<button ion-button clear small color="primary" (click)="itemTapped($event, auxSuggestionid[sugidx])">
+							<ion-icon name='arrow-dropright'></ion-icon>
+							Ver mas sobre el libro sugerido
+						</button>
+					</ion-col>
+				</ion-row>
 		</ion-card-content>
 	</ion-card>
 
