@@ -54,6 +54,20 @@ const queryBookReviewsByCode = gql`
   }
 `;
 
+const queryBookSuggestionsByCode = gql`  
+  query($id: Int!){
+    bookSuggestionsByCode(code: $id) {
+      results {
+        suggestion_id
+        book_id1
+        book_id2
+        reason
+      }
+    }
+  }
+`;
+
+
 const queryAllBooklist = gql`  
 query allBooklist{
     allBooklist{
@@ -124,4 +138,18 @@ export class BooksProvider {
     return queryWatcher.valueChanges
       .map(result => result.data.bookReviewsByCode.results);
   }
+
+  getBookSuggestionsByCode(code: number): Observable<any> {
+    const queryWatcher = this.apollo.watchQuery<any>({
+      query: queryBookSuggestionsByCode,
+      variables: {
+        id: code
+      },
+      fetchPolicy: 'network-only'
+    });
+
+    return queryWatcher.valueChanges
+      .map(result => result.data.bookSuggestionsByCode.results);
+  }
+
 }

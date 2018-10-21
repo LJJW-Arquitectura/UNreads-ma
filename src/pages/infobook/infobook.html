@@ -50,5 +50,14 @@
 		</ion-card-content>
 	</ion-card>
 
+	<h1>Sugerencias:</h1>
+	<ion-card *ngFor="let suggestion of (suggestions$| async); let sugidx = index ">
+		<ion-card-content>
+			<p>
+			<strong>Libro sugerido:</strong>{{auxSuggestion[sugidx]}}<br>
+			<strong>Razón: </strong>{{suggestion.reason}}
+			</p>
+		</ion-card-content>
+	</ion-card>
 
 </ion-content>

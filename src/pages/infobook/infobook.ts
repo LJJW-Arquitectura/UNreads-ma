@@ -19,18 +19,27 @@ import { Observable } from 'rxjs/Observable';
  export class InfobookPage {
  	book_id: number;
  	book$: Observable<any>;
- 	reviews$: Observable<any>;
- 	aux = []
+   reviews$: Observable<any>;
+   suggestions$: Observable<any>;
+   aux = []
+   auxSuggestion = []
  	constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider,public provideruser: UserProvider) {
  		this.book_id = navParams.get('id');
  		this.book$ = provider.getBookById(this.book_id);
- 		this.reviews$ = provider.getBookReviewsByCode(this.book_id); 		
+    this.reviews$ = provider.getBookReviewsByCode(this.book_id); 	
  		this.reviews$.subscribe(review =>{
  			for (var i = 0; i < review.length ; i++) {
  				provideruser.getUserById(review[i].user_id).subscribe(user =>{
  					this.aux.push(user.username)})
  				}
- 		});
+     });
+     this.suggestions$ = provider.getBookSuggestionsByCode(this.book_id); 	  
+     this.suggestions$.subscribe(suggestion =>{
+      for (var i = 0; i < suggestion.length ; i++) {
+        provider.getBookById(suggestion[i].book_id2).subscribe(bookSuggestion =>{
+          this.auxSuggestion.push(bookSuggestion.title)})
+        }
+    });
  	}
 
  	ionViewDidLoad() {
