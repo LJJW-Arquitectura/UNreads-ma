@@ -32,12 +32,9 @@ import { InfobookPage } from '../infobook/infobook';
  		provider.getAllBooks().subscribe(book => this.books$ = book);
  	} 
  	setFilteredItems(){
+ 		this.pro.getAllBooks().subscribe(book => this.Allbooks$ = book);
  		this.books$ = this.Allbooks$.filter((item) => item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1)
  	} 	
- 	cancel(){
- 		
- 		console.log("SADASDASDASDASDA")
- 	}
  	trackByFn(index, book) {
  		return book.id;
  	}
