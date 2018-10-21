@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
+import { AllbooksPage } from '../allbooks/allbooks';
 import { UserProvider } from '../../providers/user/user';
 import { GlobalProvider } from "../../providers/global/global";
 import { ToastController } from 'ionic-angular';
@@ -27,6 +28,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController, 
   						public navParams: NavParams,
   						public provider: UserProvider,
+              public viewCtrl: ViewController,
   						public global: GlobalProvider,
               public toastCtrl: ToastController) {
   }
@@ -50,15 +52,10 @@ export class LoginPage {
       console.log("AuthId: "+user.id)
       this.global.authenticatedId = user.id;
       this.presentToast();
+      this.navCtrl.setRoot(AllbooksPage);
+      this.navCtrl.popToRoot();
     });
     
-    //yep, esa
-    /*mostramos el id del usuario autenticado a todo el resto de la aplicacion
-    if(this.user$ != undefined){
-      console.log("AuthId: "+this.user$.id)
-      this.global.authenticatedId = this.user$.id;
-      this.presentToast();
-    }*/
   }
   goRegister(){
   	this.navCtrl.push(RegisterPage);

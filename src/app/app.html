@@ -5,7 +5,7 @@
 			<ion-title>Menu</ion-title>
 		</ion-toolbar>
 	</ion-header>
-	<ion-content>
+	<ion-content padding id="main-menu">
 		<ion-list>
 			<button menuClose ion-button full *ngFor="let p of pages" (click)="openPage(p)" >
 			   {{p.title}}
