@@ -44,6 +44,7 @@ const queryuserById = gql`
   query($user_id: Int!) {
   	userById(user_id: $user_id){
       username
+      email
     }
   }
 `;

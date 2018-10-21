@@ -43,17 +43,29 @@ export class LoginPage {
     });
     toast.present();
   }
+  noAuthToast() {
+    const toast = this.toastCtrl.create({
+      message: 'Incorrect User Or Password',
+      duration: 3000
+    });
+    toast.present();
+  }
   login(){
   	console.log("Username: "+this.username)
   	console.log("Password: "+this.password)
     //Esta es la linea que no se digna funcionar hasta no darle doble click
   	this.provider.getUserByUsernameAndPassword(this.username,this.password).subscribe(user =>
     {
-      console.log("AuthId: "+user.id)
-      this.global.authenticatedId = user.id;
-      this.presentToast();
-      this.navCtrl.setRoot(AllbooksPage);
-      this.navCtrl.popToRoot();
+      if(user!=undefined){
+        console.log("AuthId: "+user.id)
+        this.global.authenticatedId = user.id;
+        this.presentToast();
+        this.navCtrl.setRoot(AllbooksPage);
+        this.navCtrl.popToRoot();
+      }
+      else{
+        this.noAuthToast();
+      }
     });
     
   }

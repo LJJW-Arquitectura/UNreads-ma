@@ -5,7 +5,18 @@
 			<ion-title>Menu</ion-title>
 		</ion-toolbar>
 	</ion-header>
+
 	<ion-content padding id="main-menu">
+		<ion-grid>
+			<ion-row>
+				<ion-col col-3>
+					<img src="../assets/imgs/logo.png">
+				</ion-col>
+				<ion-col col-9>
+					<p>{{username}}</p>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 		<ion-list>
 			<button menuClose ion-button full *ngFor="let p of pages" (click)="openPage(p)" >
 			   {{p.title}}
