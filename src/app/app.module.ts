@@ -19,6 +19,7 @@ import { InfobooklistPage } from '../pages/infobooklist/infobooklist';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { GlobalProvider } from '../providers/global/global';
+import { MybooklistPage } from '../pages/mybooklist/mybooklist';
 
 import { StarRatingModule } from 'ionic3-star-rating';
 
@@ -34,6 +35,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
   InfobooklistPage,
   LoginPage,
   RegisterPage,
+  MybooklistPage,
   ],
   imports: [
   BrowserModule,
@@ -53,6 +55,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
   InfobooklistPage,
   LoginPage,
   RegisterPage,
+  MybooklistPage,
   ],
   providers: [
   StatusBar,
@@ -60,7 +63,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
   {provide: ErrorHandler, useClass: IonicErrorHandler},
   BooksProvider,
   UserProvider,
-    GlobalProvider
+  GlobalProvider
   ]
 })
 
