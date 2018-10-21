@@ -24,32 +24,33 @@ import { Observable } from 'rxjs/Observable';
    aux = []
    auxSuggestiontitle = []
    auxSuggestionid = []
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider,public provideruser: UserProvider) {
- 		this.book_id = navParams.get('id');
- 		this.book$ = provider.getBookById(this.book_id);
-    this.reviews$ = provider.getBookReviewsByCode(this.book_id); 	
- 		this.reviews$.subscribe(review =>{
- 			for (var i = 0; i < review.length ; i++) {
- 				provideruser.getUserById(review[i].user_id).subscribe(user =>{
- 					this.aux.push(user.username)})
- 				}
+   constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider,public provideruser: UserProvider) {
+     this.book_id = navParams.get('id');
+     this.book$ = provider.getBookById(this.book_id);
+     this.reviews$ = provider.getBookReviewsByCode(this.book_id); 	
+     this.reviews$.subscribe(review =>{
+       for (var i = 0; i < review.length ; i++) {
+         provideruser.getUserById(review[i].user_id).subscribe(user =>{
+           this.aux.push(user.username)})
+       }
      });
      this.suggestions$ = provider.getBookSuggestionsByCode(this.book_id); 	  
      this.suggestions$.subscribe(suggestion =>{
-      for (var i = 0; i < suggestion.length ; i++) {
-        provider.getBookById(suggestion[i].book_id2).subscribe(bookSuggestion =>{
-          this.auxSuggestionid.push(bookSuggestion.id),
-          this.auxSuggestiontitle.push(bookSuggestion.title)})
-        }
-    });
+       for (var i = 0; i < suggestion.length ; i++) {
+         provider.getBookById(suggestion[i].book_id2).subscribe(bookSuggestion =>{
+           this.auxSuggestionid.push(bookSuggestion.id),
+           this.auxSuggestiontitle.push(bookSuggestion.title)})
+       }
+     });
    }
    
    itemTapped(event, book_id) {
-		this.navCtrl.push(InfobookPage, {
-		id: book_id
-		});
-	}
- 	ionViewDidLoad() {
- 	}
+     this.navCtrl.popToRoot()
+     this.navCtrl.push(InfobookPage, {
+       id: book_id
+     });
+   }
+   ionViewDidLoad() {
+   }
 
  }
