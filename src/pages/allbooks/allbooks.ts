@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
 import { Observable } from 'rxjs/Observable';  
 import { InfobookPage } from '../infobook/infobook';
+import { CreatebookPage } from '../createbook/createbook';
 
 /**
  * Generated class for the AllbooksPage page.
@@ -42,6 +43,10 @@ import { InfobookPage } from '../infobook/infobook';
 		this.navCtrl.push(InfobookPage, {
 		id: book_id
 		});
+	}
+
+	showCreateBook() {
+		this.navCtrl.push(CreatebookPage);
 	}
 
 }
