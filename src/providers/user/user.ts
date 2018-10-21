@@ -97,10 +97,11 @@ export class UserProvider {
 
   getUserById(id: number): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
-      query: this.getUserById,
+      query: queryuserById,
       variables: {
       	user_id: id
-      }
+      },
+      fetchPolicy: 'network-only'
     });
     return queryWatcher.valueChanges
 			.map(result => result.data.userById)

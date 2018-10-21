@@ -33,10 +33,10 @@
 	</ion-list>	
 
 	<h1>Reseñas:</h1>
-	<ion-card *ngFor="let review of reviews$ | async">
+	<ion-card *ngFor="let review of (reviews$| async) ;let idx = index ">
 		<ion-card-content>
 			<p>
-			<strong>Usuario:</strong>Wilson<br>
+			<strong>Usuario:</strong>{{aux[idx]}}<br>
 			<strong>Reseña: </strong>{{review.review}}
 			</p>
 			<ionic3-star-rating 
