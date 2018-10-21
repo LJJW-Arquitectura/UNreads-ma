@@ -32,7 +32,8 @@ export class MyApp {
     { title: 'Login', component: LoginPage },
     { title: 'Libros', component: AllbooksPage },
     { title: 'InfoBook', component: InfobookPage },
-    { title: 'Listas', component: AllbooklistPage }
+    { title: 'Listas', component: AllbooklistPage },
+    { title: 'Mis Listas', component: MybooklistPage }
     ];
     if(this.global.authenticatedId == 0){
       this.username = "Guest";
@@ -57,7 +58,7 @@ export class MyApp {
       this.username = "Guest";
     }
     else{
-      this.provideruser.getUserById(review[i].user_id).subscribe(user =>{
+      this.provideruser.getUserById(this.global.authenticatedId).subscribe(user =>{
           this.username = user.username})
     }
   }
