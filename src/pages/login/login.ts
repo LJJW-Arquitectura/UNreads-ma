@@ -20,7 +20,7 @@ export class LoginPage {
 
 	username:string;
 	password:string;
-	user$ = '';
+	user$;
 	id$
 
   constructor(public navCtrl: NavController, 
@@ -39,7 +39,7 @@ export class LoginPage {
   	this.provider.getUserByUsernameAndPassword(this.username,this.password).subscribe(user => this.user$ = user);
     //yep, esa
     //mostramos el id del usuario autenticado a todo el resto de la aplicacion
-    if(this.user$ != ''){
+    if(this.user$ != undefined){
       this.global.authenticatedId = this.user$.id;
     }
   }
