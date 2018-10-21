@@ -52,11 +52,12 @@ export class BooksProvider {
 
   getAllBooks(): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
-      query: queryAllBooks
+      query: queryAllBooks,
+      fetchPolicy: 'network-only'
     });
 
     return queryWatcher.valueChanges
-      .map(result => result.data.allBooks);;
+      .map(result => result.data.allBooks);
   }
 
   getBookById(book_id: number): Observable<any> {
@@ -64,7 +65,8 @@ export class BooksProvider {
       query: queryBookById,
       variables: {
         id: book_id
-      }
+      },
+      fetchPolicy: 'network-only'
     });
 
     return queryWatcher.valueChanges

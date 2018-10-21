@@ -12,36 +12,40 @@ import { InfobookPage } from '../infobook/infobook';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
-@Component({
-  selector: 'page-allbooks',
-  templateUrl: 'allbooks.html',
-})
-export class AllbooksPage {
+ @IonicPage()
+ @Component({
+ 	selector: 'page-allbooks',
+ 	templateUrl: 'allbooks.html',
+ })
+ export class AllbooksPage {
 
-  books$: Observable<any>;
-  books_filtered$: Observable<any>;
-  searchTerm: string = '';
-  pro
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public provider: BooksProvider) {
-  	this.pro = provider
-    this.books$ = provider.getAllBooks();
-    this.books_filtered$ = this.books$;
-  } 
+ 	books$
+ 	Allbooks$
+ 	searchTerm: string = '';
+ 	pro
+ 	refresh = true
+ 	constructor(public navCtrl: NavController, 
+ 		public navParams: NavParams,
+ 		public provider: BooksProvider) {
+ 		this.pro = provider
+ 		provider.getAllBooks().subscribe(book => this.Allbooks$ = book);
+ 		provider.getAllBooks().subscribe(book => this.books$ = book);
+ 	} 
+ 	setFilteredItems(){
+ 		this.books$ = this.Allbooks$.filter((item) => item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1)
+ 	} 	
+ 	cancel(){
+ 		
+ 		console.log("SADASDASDASDASDA")
+ 	}
+ 	trackByFn(index, book) {
+ 		return book.id;
+ 	}
 
-  setFilteredItems(){
-  	
-  	this.books_filtered$.pipe(filter(book => book.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1))
-  	this.books_filtered$ = this.pro.getAllBooks();
-  	console.log(this.books_filtered$.toString())
-  }
-
-  itemTapped(event, book_id) {
-    this.navCtrl.push(InfobookPage, {
-      id: book_id
-    });
-  }
+	itemTapped(event, book_id) {
+		this.navCtrl.push(InfobookPage, {
+		id: book_id
+		});
+	}
 
 }
