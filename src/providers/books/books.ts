@@ -203,8 +203,8 @@ export class BooksProvider {
       error => console.log('Mutation Error:', error));
   }
 
-  createBook(title: string, publisher: string, numPages: number, isbn: string, plot: string, authors: Array<string>, genres:  Array<string>): void {  
-    this.apollo.mutate({
+  createBook(title: string, publisher: string, numPages: number, isbn: string, plot: string, authors: Array<string>, genres:  Array<string>): Observable<any> {  
+    return this.apollo.mutate({
       mutation: mutationCreateBook,
       variables: {
         title: title,
@@ -216,8 +216,6 @@ export class BooksProvider {
         genres: genres
       }
     })
-    .subscribe(response => console.log(response.data),
-      error => console.log('Mutation Error:', error));
   }
 
   getBooklistByuser(userid: number): Observable<any> {

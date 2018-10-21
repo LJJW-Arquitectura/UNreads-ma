@@ -12,9 +12,18 @@
 	<ion-list inset>
 		<ion-card>
 			<ion-card-header>
-				<strong>{{(book$|async)?.title}}</strong> 
+
+				<strong float-start>{{(book$|async)?.title}}</strong>
+				<ion-chip ion-button float-end ifq (click)="read()">
+					<ion-icon *ngIf="!readed" name="ios-bookmark"></ion-icon>
+					<ion-label *ngIf="!readed">¿Lo has leido?</ion-label>
+					<ion-icon *ngIf="readed" name="ios-checkmark-circle-outline"></ion-icon>
+					<ion-label *ngIf="readed">Leido</ion-label>
+					
+				</ion-chip> 
 			</ion-card-header>
 			<ion-card-content>
+
 				{{(book$|async)?.plot}}
 			</ion-card-content>
 			<ion-item>
@@ -29,43 +38,43 @@
 				<strong>Generos: </strong>
 				<ion-badge id="tags" *ngFor="let genre of (book$|async)?.genres">{{genre}}</ion-badge><br>
 			</ion-item>
-		  </ion-card>
+		</ion-card>
 	</ion-list>	
 
 	<h1>Reseñas:</h1>
 	<ion-card *ngFor="let review of (reviews$| async) ;let idx = index ">
 		<ion-card-content>
 			<p>
-			<strong>Usuario:</strong>{{aux[idx]}}<br>
-			<strong>Reseña: </strong>{{review.review}}
+				<strong>Usuario:</strong>{{aux[idx]}}<br>
+				<strong>Reseña: </strong>{{review.review}}
 			</p>
 			<ionic3-star-rating 
-				activeIcon = "ios-star"
-				defaultIcon = "ios-star-outline"
-				activeColor = "#488aff" 
-				defaultColor = "#b5b5b5"
-				readonly="true"
-				[rating]= review.grade>
-			</ionic3-star-rating>
-		</ion-card-content>
-	</ion-card>
+			activeIcon = "ios-star"
+			defaultIcon = "ios-star-outline"
+			activeColor = "#488aff" 
+			defaultColor = "#b5b5b5"
+			readonly="true"
+			[rating]= review.grade>
+		</ionic3-star-rating>
+	</ion-card-content>
+</ion-card>
 
-	<h1>Sugerencias:</h1>
-	<ion-card *ngFor="let suggestion of (suggestions$| async); let sugidx = index ">
-		<ion-card-content>
-			<p>
+<h1>Sugerencias:</h1>
+<ion-card *ngFor="let suggestion of (suggestions$| async); let sugidx = index ">
+	<ion-card-content>
+		<p>
 			<strong>Libro sugerido:</strong>{{auxSuggestiontitle[sugidx]}}<br>
 			<strong>Razón: </strong>{{suggestion.reason}}
-			</p>
-			<ion-row >
-					<ion-col text-right>
-						<button ion-button clear small color="primary" (click)="itemTapped($event, auxSuggestionid[sugidx])">
-							<ion-icon name='arrow-dropright'></ion-icon>
-							Ver mas sobre el libro sugerido
-						</button>
-					</ion-col>
-				</ion-row>
-		</ion-card-content>
-	</ion-card>
+		</p>
+		<ion-row >
+			<ion-col text-right>
+				<button ion-button clear small color="primary" (click)="itemTapped($event, auxSuggestionid[sugidx])">
+					<ion-icon name='arrow-dropright'></ion-icon>
+					Ver mas sobre el libro sugerido
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-card-content>
+</ion-card>
 
 </ion-content>

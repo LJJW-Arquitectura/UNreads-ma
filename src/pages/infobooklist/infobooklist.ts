@@ -21,10 +21,9 @@ import { InfobookPage } from '../infobook/infobook';
  	list$
  	books$ = []
  	ready = false
+ 	readed = false
  	constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider) {
- 		console.log("HPLA")
  		this.list$ = navParams.get('list')
- 		var newbook
  		for (var i = this.list$.books.length - 1; i >= 0; i--) {
  			provider.getBookById(this.list$.books[i]).subscribe(book => this.books$.push(book))
  		} 		
@@ -39,6 +38,10 @@ import { InfobookPage } from '../infobook/infobook';
 		this.navCtrl.push(InfobookPage, {
 		id: book_id
 		});
+	}
+
+	read(){
+		this.readed = true
 	}
 
  }
