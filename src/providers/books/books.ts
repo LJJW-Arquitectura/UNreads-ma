@@ -67,6 +67,20 @@ query allBooklist{
 }
 `;
 
+
+const querybooklistsByUser = gql`  
+query booklistsByUser($id: Int!){
+    booklistsByUser(user_id: $id){
+      name
+      user
+      user_id
+      date_update
+      date_creation
+      books
+    }
+}
+`;
+
 /*
   Generated class for the BooksProvider provider.
 
@@ -110,8 +124,19 @@ export class BooksProvider {
     return queryWatcher.valueChanges
       .map(result => result.data.allBooklist);
   }
+  
+  getBooklistByuser(userid: number): Observable<any> {
+    const queryWatcher = this.apollo.watchQuery<any>({
+      query: querybooklistsByUser,
+      variables: {
+        id: userid
+      },
+      fetchPolicy: 'network-only'
+    });
 
-
+    return queryWatcher.valueChanges
+      .map(result => result.data.booklistsByUser);
+  }
   getBookReviewsByCode(code: number): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
       query: queryBookReviewsByCode,

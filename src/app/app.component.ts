@@ -10,6 +10,7 @@ import { CreatesuggestionPage } from '../pages/createsuggestion/createsuggestion
 import { InfobookPage } from '../pages/infobook/infobook';
 import { InfobooklistPage } from '../pages/infobooklist/infobooklist';
 import { LoginPage } from '../pages/login/login';
+import { MybooklistPage } from '../pages/mybooklist/mybooklist';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +25,8 @@ export class MyApp {
     { title: 'Login', component: LoginPage },
     { title: 'Libros', component: AllbooksPage },
     { title: 'InfoBook', component: InfobookPage },
-    { title: 'Listas', component: AllbooklistPage }
+    { title: 'Listas', component: AllbooklistPage },
+    { title: 'Mis Listas', component: MybooklistPage }
     ];
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
