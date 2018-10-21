@@ -10,8 +10,30 @@
 
 <ion-content padding>
 	<ion-list inset>
-		<ion-item> 
-			{{(book$|async)?.plot}}
-		</ion-item>
+		<ion-card>
+			<ion-card-header>
+				<strong>{{(book$|async)?.title}}</strong> 
+			</ion-card-header>
+			<ion-card-content>
+				{{(book$|async)?.plot}}
+			</ion-card-content>
+			<ion-item>
+				<strong>Editorial: </strong> 
+				<ion-badge>{{(book$|async)?.publisher}}</ion-badge><br>
+				<strong>ISBN: </strong> 
+				<ion-badge>{{(book$|async)?.isbn}}</ion-badge><br>
+				<strong>Paginas: </strong> 
+				<ion-badge>{{(book$|async)?.numPages}}</ion-badge><br>
+				<strong>Autores: </strong> 
+				<ion-badge id="tags" *ngFor="let author of (book$|async)?.authors">{{author}}</ion-badge><br>
+				<strong>Generos: </strong>
+				<ion-badge id="tags" *ngFor="let genre of (book$|async)?.genres">{{genre}}</ion-badge><br>
+			</ion-item>
+		  </ion-card>
 	</ion-list>	
+
+	<ion-item *ngFor="let review of reviews$ | async">
+		{{review.review}}
+	</ion-item>
+
 </ion-content>

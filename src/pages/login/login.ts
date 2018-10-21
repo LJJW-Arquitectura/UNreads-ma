@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { UserProvider } from '../../providers/user/user';
+<<<<<<< HEAD
 import { GlobalProvider } from "../../providers/global/global";
+=======
+import { Observable } from 'rxjs/Observable';  
+>>>>>>> f4dc1730be26ed96de73ff6bbc0ec525e5313278
 
 /**
  * Generated class for the LoginPage page.

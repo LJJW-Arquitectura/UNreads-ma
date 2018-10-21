@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
 import { Observable } from 'rxjs/Observable';  
 import { filter } from 'rxjs/operators';  
+import { InfobookPage } from '../infobook/infobook';
 
 /**
  * Generated class for the AllbooksPage page.
@@ -40,5 +41,11 @@ import { filter } from 'rxjs/operators';
  	trackByFn(index, book) {
  		return book.id;
  	}
- }
 
+	itemTapped(event, book_id) {
+		this.navCtrl.push(InfobookPage, {
+		id: book_id
+		});
+	}
+
+}

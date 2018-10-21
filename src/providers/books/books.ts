@@ -9,6 +9,7 @@ import gql from 'graphql-tag';
 const queryAllBooks = gql`  
   query allBooks {
     allBooks {
+      id
       title
       authors
       numPages
@@ -18,25 +19,42 @@ const queryAllBooks = gql`
 `;
 
 const queryBookById = gql`  
-query($id: Int!){
-  bookById(book_id: $id) {
-    id
-    title
-    publisher
-    numPages
-    isbn
-    plot
-    authors
-    genres
-    cover {
-      fileName
-      fileType
-      fileDownloadUri
-      size
+  query($id: Int!){
+    bookById(book_id: $id) {
+      id
+      title
+      publisher
+      numPages
+      isbn
+      plot
+      authors
+      genres
+      cover {
+        fileName
+        fileType
+        fileDownloadUri
+        size
+      }
     }
   }
-}
 `;
+
+const queryBookReviewsByCode = gql`  
+  query($id: Int!){
+    bookReviewsByCode(code: $id) {
+      results {
+        review_id
+        book_id
+        user_id
+        creationdate
+        review
+        grade
+      }
+    }
+  }
+`;
+
+
 
 /*
   Generated class for the BooksProvider provider.
@@ -59,16 +77,29 @@ export class BooksProvider {
       .map(result => result.data.allBooks);
   }
 
-  getBookById(): Observable<any> {
+  getBookById(book_id: number): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
       query: queryBookById,
       variables: {
-        id: 13
+        id: book_id
       },
       fetchPolicy: 'network-only'
     });
 
     return queryWatcher.valueChanges
       .map(result => result.data.bookById);
+  }
+
+  getBookReviewsByCode(code: number): Observable<any> {
+    const queryWatcher = this.apollo.watchQuery<any>({
+      query: queryBookReviewsByCode,
+      variables: {
+        id: code
+      },
+      fetchPolicy: 'network-only'
+    });
+
+    return queryWatcher.valueChanges
+      .map(result => result.data.bookReviewsByCode.results);
   }
 }
