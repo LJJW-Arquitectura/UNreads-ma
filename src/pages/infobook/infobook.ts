@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
 import { UserProvider }  from '../../providers/user/user';
+import { GlobalProvider }  from '../../providers/global/global';
 import { Observable } from 'rxjs/Observable';  
 
 /**
@@ -24,10 +25,12 @@ import { Observable } from 'rxjs/Observable';
    aux = []
    auxSuggestiontitle = []
    auxSuggestionid = []
-   constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider,public provideruser: UserProvider) {
+   readed
+   constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider,public provideruser: UserProvider,public globalProvider: GlobalProvider) {
+     this.readed = false     
      this.book_id = navParams.get('id');
      this.book$ = provider.getBookById(this.book_id);
-     this.reviews$ = provider.getBookReviewsByCode(this.book_id); 	
+     this.reviews$ = provider.getBookReviewsByCode(this.book_id);
      this.reviews$.subscribe(review =>{
        for (var i = 0; i < review.length ; i++) {
          provideruser.getUserById(review[i].user_id).subscribe(user =>{
@@ -42,6 +45,11 @@ import { Observable } from 'rxjs/Observable';
            this.auxSuggestiontitle.push(bookSuggestion.title)})
        }
      });
+     if (this.globalProvider.authenticatedId != 0) {
+       this.provider.getReadbooks(this.globalProvider.authenticatedId).subscribe(list => {
+         this.readed = list.books.indexOf(this.book_id) > -1
+       })
+     }
    }
    
    itemTapped(event, book_id) {
@@ -51,6 +59,18 @@ import { Observable } from 'rxjs/Observable';
      });
    }
    ionViewDidLoad() {
+
+   }
+   islogged(){
+     if (this.globalProvider.authenticatedId != 0) {       
+       return true
+     }else{
+       return false
+     }
+   }
+   read(){
+     this.provider.addBookToReadlist(this.globalProvider.authenticatedId,this.book_id)
+     this.readed = true
    }
 
  }

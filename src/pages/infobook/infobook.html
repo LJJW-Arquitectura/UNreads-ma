@@ -14,12 +14,13 @@
 			<ion-card-header>
 
 				<strong float-start>{{(book$|async)?.title}}</strong>
-				<ion-chip ion-button float-end ifq (click)="read()">
-					<ion-icon *ngIf="!readed" name="ios-bookmark"></ion-icon>
-					<ion-label *ngIf="!readed">¿Lo has leido?</ion-label>
-					<ion-icon *ngIf="readed" name="ios-checkmark-circle-outline"></ion-icon>
-					<ion-label *ngIf="readed">Leido</ion-label>
-					
+				<ion-chip ion-button float-end *ngIf="islogged() && !readed"  (click)="read()">
+					<ion-icon  name="ios-bookmark"></ion-icon>
+					<ion-label >¿Lo has leido?</ion-label>
+				</ion-chip> 
+				<ion-chip ion-button float-end *ngIf="islogged() && readed" disabled="true"(click)="read()">					
+					<ion-icon  name="ios-checkmark-circle-outline"></ion-icon>
+					<ion-label >Leido</ion-label>					
 				</ion-chip> 
 			</ion-card-header>
 			<ion-card-content>

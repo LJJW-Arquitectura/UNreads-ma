@@ -40,8 +40,4 @@ import { InfobookPage } from '../infobook/infobook';
 		});
 	}
 
-	read(){
-		this.readed = true
-	}
-
  }
