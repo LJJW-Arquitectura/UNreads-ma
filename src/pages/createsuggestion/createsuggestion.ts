@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BooksProvider } from '../../providers/books/books';
+import { InfobookPage } from '../infobook/infobook';
 
 /**
  * Generated class for the CreatesuggestionPage page.
@@ -14,8 +16,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'createsuggestion.html',
 })
 export class CreatesuggestionPage {
+	book_id1: number;
+	book_id2: number;
+  reason: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider) {
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  createSuggestion(){
+    console.log(this.book_id1 , this.book_id2, this.reason);
+    this.provider.createSuggestion(this.book_id1, this.book_id2, this.reason).subscribe(response => {
+      console.log(response);
+      this.navCtrl.push(InfobookPage, {
+        id: this.book_id1
+      });
+    })
   }
 
   ionViewDidLoad() {
