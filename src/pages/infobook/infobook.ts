@@ -27,6 +27,8 @@ import { Observable } from 'rxjs/Observable';
    auxSuggestionid = []
    readed
    constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider,public provideruser: UserProvider,public globalProvider: GlobalProvider) {
+     this.auxSuggestiontitle = []
+     this.auxSuggestionid = []
      this.readed = false     
      this.book_id = navParams.get('id');
      this.book$ = provider.getBookById(this.book_id);
@@ -42,15 +44,21 @@ import { Observable } from 'rxjs/Observable';
        for (var i = 0; i < suggestion.length ; i++) {
          provider.getBookById(suggestion[i].book_id2).subscribe(bookSuggestion =>{
            this.auxSuggestionid.push(bookSuggestion.id),
-           this.auxSuggestiontitle.push(bookSuggestion.title)})
+           this.auxSuggestiontitle.push(bookSuggestion.title)
+         })
        }
      });
+
+
+
      if (this.globalProvider.authenticatedId != 0) {
        this.provider.getReadbooks(this.globalProvider.authenticatedId).subscribe(list => {
          this.readed = list.books.indexOf(this.book_id) > -1
        })
      }
    }
+
+
    
    itemTapped(event, book_id) {
      this.navCtrl.popToRoot()
