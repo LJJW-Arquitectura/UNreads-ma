@@ -12,7 +12,7 @@ import { InfobooklistPage } from '../pages/infobooklist/infobooklist';
 import { LoginPage } from '../pages/login/login';
 import { MybooklistPage } from '../pages/mybooklist/mybooklist';
 import { ReadlistPage } from '../pages/readlist/readlist';
-
+import { CreatebookPage } from '../pages/createbook/createbook'
 
 
 import { UserProvider } from '../providers/user/user';
@@ -36,7 +36,8 @@ export class MyApp {
     { title: 'Libros', component: AllbooksPage ,needLogin: false, noNeedLogin: false},
     { title: 'Listas', component: AllbooklistPage ,needLogin: false, noNeedLogin: false},
     { title: 'Mis listas', component: MybooklistPage ,needLogin: true, noNeedLogin: false},
-    { title: 'Mis libros leidos', component: ReadlistPage ,needLogin: true, noNeedLogin: false}
+    { title: 'Mis libros leidos', component: ReadlistPage ,needLogin: true, noNeedLogin: false},
+    { title: 'Create Libro', component: CreatebookPage ,needLogin: false, noNeedLogin: false},
     ];
     if(this.global.authenticatedId == 0){
       this.username = "Guest";

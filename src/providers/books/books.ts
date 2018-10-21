@@ -116,6 +116,22 @@ query readbooks($id: Int!){
 }
 `;
 
+const mutationCreateBook= gql`  
+  mutation($title: String!, $publisher: String, $numPages: Int, $isbn: String, $plot: String, $authors: [String], $genres: [String]) {
+    createBook(book: {
+      title: $title,
+      publisher: $publisher,
+      numPages: $numPages,
+      isbn: $isbn,
+      plot:  $plot,
+      authors: $authors,
+      genres: $genres
+    }){
+      id
+    }
+  }
+`;
+
 /*
   Generated class for the BooksProvider provider.
 
@@ -181,6 +197,23 @@ export class BooksProvider {
         user: User,
         user_id: User_id,
         books: Books
+      }
+    })
+    .subscribe(response => console.log(response.data),
+      error => console.log('Mutation Error:', error));
+  }
+
+  createBook(title: string, publisher: string, numPages: number, isbn: string, plot: string, authors: Array<string>, genres:  Array<string>): void {  
+    this.apollo.mutate({
+      mutation: mutationCreateBook,
+      variables: {
+        title: title,
+        publisher: publisher,
+        numPages: numPages,
+        isbn: isbn,
+        plot: plot,
+        authors: authors,
+        genres: genres
       }
     })
     .subscribe(response => console.log(response.data),
