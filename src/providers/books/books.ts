@@ -151,8 +151,17 @@ const mutationCreateReview= gql`
   }
 `;
 
-
-
+const mutationsCreateSuggestion= gql`
+mutation($book_id1: Int!, $book_id2: Int!, $reason: String!) {
+  createSuggestion(suggestion: {
+    book_id1: $book_id1, 
+    book_id2: $book_id2, 
+    reason: $reason
+  }){
+    message
+  } 
+}
+`;
 /*
   Generated class for the BooksProvider provider.
 
@@ -259,6 +268,17 @@ export class BooksProvider {
         plot: plot,
         authors: authors,
         genres: genres
+      }
+    })
+  }
+
+  createSuggestion(book_id1: number, book_id2: number, reason: string): Observable<any> {  
+    return this.apollo.mutate({
+      mutation: mutationsCreateSuggestion,
+      variables: {
+        book_id1: book_id1,
+        book_id2: book_id2,
+        reason: reason
       }
     })
   }
