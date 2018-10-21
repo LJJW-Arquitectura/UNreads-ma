@@ -54,7 +54,18 @@ const queryBookReviewsByCode = gql`
   }
 `;
 
-
+const queryAllBooklist = gql`  
+query allBooklist{
+    allBooklist{
+      name
+      user
+      user_id
+      date_update
+      date_creation
+      books
+    }
+}
+`;
 
 /*
   Generated class for the BooksProvider provider.
@@ -89,6 +100,17 @@ export class BooksProvider {
     return queryWatcher.valueChanges
       .map(result => result.data.bookById);
   }
+
+  getAllBooklist(): Observable<any> {
+    const queryWatcher = this.apollo.watchQuery<any>({
+      query: queryAllBooklist,
+      fetchPolicy: 'network-only'
+    });
+
+    return queryWatcher.valueChanges
+      .map(result => result.data.allBooklist);
+  }
+
 
   getBookReviewsByCode(code: number): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
