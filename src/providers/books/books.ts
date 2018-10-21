@@ -9,6 +9,7 @@ import gql from 'graphql-tag';
 const queryAllBooks = gql`  
   query allBooks {
     allBooks {
+      id
       title
       authors
       numPages
@@ -58,11 +59,11 @@ export class BooksProvider {
       .map(result => result.data.allBooks);;
   }
 
-  getBookById(): Observable<any> {
+  getBookById(book_id: number): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
       query: queryBookById,
       variables: {
-        id: 13
+        id: book_id
       }
     });
 
