@@ -59,6 +59,14 @@ import { GlobalProvider } from '../../providers/global/global';
 		});
 	}
 
+	islogged(){
+		if (this.globalProvider.authenticatedId != 0) {       
+		  return true
+		}else{
+		  return false
+		}
+	  }
+
 	showCreateBook() {
 		this.navCtrl.push(CreatebookPage);
 	}

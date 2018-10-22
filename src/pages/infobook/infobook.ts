@@ -29,7 +29,7 @@ import { Observable } from 'rxjs/Observable';
    constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider,public provideruser: UserProvider,public globalProvider: GlobalProvider) {
      this.auxSuggestiontitle = []
      this.auxSuggestionid = []
-     this.readed = false     
+     this.readed = false          
      this.book_id = navParams.get('id');
      this.book$ = provider.getBookById(this.book_id);
      this.reviews$ = provider.getBookReviewsByCode(this.book_id);
@@ -40,7 +40,7 @@ import { Observable } from 'rxjs/Observable';
        }
      });
      this.suggestions$ = provider.getBookSuggestionsByCode(this.book_id); 	  
-     this.suggestions$.subscribe(suggestion =>{
+     this.suggestions$.subscribe(suggestion =>{       
        for (var i = 0; i < suggestion.length ; i++) {
          provider.getBookById(suggestion[i].book_id2).subscribe(bookSuggestion =>{
            this.auxSuggestionid.push(bookSuggestion.id),
@@ -48,9 +48,6 @@ import { Observable } from 'rxjs/Observable';
          })
        }
      });
-
-
-
      if (this.globalProvider.authenticatedId != 0) {
        this.provider.getReadbooks(this.globalProvider.authenticatedId).subscribe(list => {
          this.readed = list.books.indexOf(this.book_id) > -1
@@ -76,9 +73,14 @@ import { Observable } from 'rxjs/Observable';
        return false
      }
    }
+   trackByFn(index, sugg) {
+     return sugg.suggestion_id;
+   }
    read(){
      this.provider.addBookToReadlist(this.globalProvider.authenticatedId,this.book_id)
      this.readed = true
    }
+
+
 
  }

@@ -39,7 +39,6 @@ export class CreatebookPage {
 
   createBook(){
     this.provider.createBook(this.title, this.publiser, this.numPages, this.isbn, this.plot, this.authors, this.genres).subscribe(response => {
-      this.navCtrl.pop();
       this.navCtrl.push(InfobookPage, {
         id: response.data.createBook.id
       });
