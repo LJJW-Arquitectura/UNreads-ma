@@ -48,6 +48,7 @@ import { Observable } from 'rxjs/Observable';
          })
        }
      });
+
      if (this.globalProvider.authenticatedId != 0) {
        this.provider.getReadbooks(this.globalProvider.authenticatedId).subscribe(list => {
          this.readed = list.books.indexOf(this.book_id) > -1
