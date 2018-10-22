@@ -14,8 +14,6 @@ import { MybooklistPage } from '../pages/mybooklist/mybooklist';
 import { ReadlistPage } from '../pages/readlist/readlist';
 import { CreatebookPage } from '../pages/createbook/createbook'
 
-
-import { UserProvider } from '../providers/user/user';
 import { GlobalProvider } from "../providers/global/global";
 @Component({
   templateUrl: 'app.html'
@@ -62,8 +60,7 @@ export class MyApp {
       this.username = "Guest";
       return false;
     }else{
-      this.provideruser.getUserById(this.global.authenticatedId).subscribe(user =>{
-          this.username = user.username})
+      this.username = this.global.user;
       return true;
     }
   }

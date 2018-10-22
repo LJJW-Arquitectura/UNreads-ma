@@ -65,7 +65,7 @@ import { GlobalProvider } from '../../providers/global/global';
 		}else{
 		  return false
 		}
-	  }
+  }
 
 	showCreateBook() {
 		this.navCtrl.push(CreatebookPage);
