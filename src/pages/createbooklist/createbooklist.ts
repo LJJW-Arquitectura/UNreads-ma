@@ -26,17 +26,17 @@ export class CreatebooklistPage {
 		public globalProvider: GlobalProvider,) {
 
 		provider.getAllBooks().subscribe(book => this.Allbooks$ = book);
- 		provider.getAllBooks().subscribe(book => this.books$ = book);
- 		this.myId = globalProvider.authenticatedId 
- 		this.user = globalProvider.user 
- 	}
+		provider.getAllBooks().subscribe(book => this.books$ = book);
+		this.myId = globalProvider.authenticatedId 
+		this.user = globalProvider.user 
+	}
 	setFilteredItems(){
- 		this.provider.getAllBooks().subscribe(book => this.Allbooks$ = book);
- 		this.books$ = this.Allbooks$.filter((item) => item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1)
- 	}
- 	trackByFn(index, book) {
- 		return book.id;
- 	}
+		this.provider.getAllBooks().subscribe(book => this.Allbooks$ = book);
+		this.books$ = this.Allbooks$.filter((item) => item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1)
+	}
+	trackByFn(index, book) {
+		return book.id;
+	}
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad CreatebooklistPage');
 	}
@@ -53,8 +53,13 @@ export class CreatebooklistPage {
 	}
 
 	createBooklist(){
-		this.provider.createBooklist(this.name,this.user,this.myId,this.booklist)
-		this.navCtrl.pop();
+		if(this.name == undefined || this.booklist == undefined || this.booklist == []){
+			alert ("Please fill all fields")
+		}else{
+			this.provider.createBooklist(this.name,this.user,this.myId,this.booklist)
+			this.navCtrl.pop();
+		}
+		
 	}
 
 }
