@@ -4,6 +4,7 @@ import { BooksProvider } from '../../providers/books/books';
 import { Observable } from 'rxjs/Observable';  
 import { filter } from 'rxjs/operators';  
 import { InfobookPage } from '../infobook/infobook';
+import { CreatereviewPage } from '../createreview/createreview';
 /**
  * Generated class for the InfobooklistPage page.
  *
@@ -37,6 +38,13 @@ import { InfobookPage } from '../infobook/infobook';
  	itemTapped(event, book_id) {
 		this.navCtrl.push(InfobookPage, {
 		id: book_id
+		});
+	}
+
+	createReview(event, book_id, book_title) {
+		this.navCtrl.push(CreatereviewPage, {
+			id: book_id,
+			title: book_title
 		});
 	}
 
