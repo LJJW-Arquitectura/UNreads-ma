@@ -35,12 +35,16 @@ export class CreatereviewPage {
   }
 
   createReview(){
-    this.provider.createReview(this.book_id, this.myId, this.review, this.grade).subscribe(response => {
-      this.navCtrl.pop();
-      this.navCtrl.push(InfobookPage, {
-        id: this.book_id
-      });
-    })
+    if (this.review == undefined){
+      alert("Please fill all fields");
+    } else {
+      this.provider.createReview(this.book_id, this.myId, this.review, this.grade).subscribe(response => {
+        this.navCtrl.pop();
+        this.navCtrl.push(InfobookPage, {
+          id: this.book_id
+        });
+      })
+    }
   }
 
 }
