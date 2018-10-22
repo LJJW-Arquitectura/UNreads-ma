@@ -20,8 +20,8 @@ import {GlobalProvider} from '../../providers/global/global';
 })
 export class MybooklistPage {
 
-  	Alllist$
- 	lists$
+  	Alllist$ = []
+ 	lists$  = []
  	searchTerm: string = '';
  	myid
  	constructor(public navCtrl: NavController, 
@@ -31,7 +31,7 @@ export class MybooklistPage {
  		this.myid = globalprovider.authenticatedId 		
  		provider.getBooklistByuser(this.myid).subscribe(list => this.Alllist$ = list);
  		provider.getBooklistByuser(this.myid).subscribe(list => this.lists$ = list);
- 		
+
  	} 
 
 
