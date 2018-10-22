@@ -16,21 +16,21 @@
 <ion-content padding>
 	<ion-list>
 		<ion-item>
-			<ion-input placeholder="Email" [(ngModel)]="email">
+			<ion-input (keyup.enter)="register()" placeholder="Email" [(ngModel)]="email">
 			</ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-input placeholder="Username" [(ngModel)]="username">
+			<ion-input (keyup.enter)="register()" placeholder="Username" [(ngModel)]="username">
 			</ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-input placeholder="Password" type="password" [(ngModel)]="password">
+			<ion-input (keyup.enter)="register()" placeholder="Password" type="password" [(ngModel)]="password">
 			</ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-input placeholder="Repeat Password" type="password" [(ngModel)]="repassword">
+			<ion-input (keyup.enter)="register()" placeholder="Repeat Password" type="password" [(ngModel)]="repassword">
 			</ion-input>
 		</ion-item>
 	</ion-list>
-	<button ion-button full (click)="register()">Register</button>
+	<button ion-button full  (click)="register()">Register</button>
 </ion-content>

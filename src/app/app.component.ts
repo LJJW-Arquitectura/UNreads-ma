@@ -27,7 +27,7 @@ export class MyApp {
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen, 
-    public global: GlobalProvider,public provideruser: UserProvider) {
+    public global: GlobalProvider) {
 
     this.pages = [
     { title: 'Login', component: LoginPage ,needLogin: false, noNeedLogin: true},
