@@ -10,13 +10,19 @@
 
 <ion-content padding center text-center>
 	<ion-list>
-		<ion-item>
-			<ion-input placeholder="Book_id1" [(ngModel)]="book_id1" required></ion-input>
-		</ion-item>
-    <ion-item>
-			<ion-input placeholder="Book_id2" [(ngModel)]="book_id2" required></ion-input>
-    </ion-item>
-    <ion-item>
+      <ion-item>
+          <ion-label>Libro 1</ion-label>
+          <ion-select [(ngModel)]="book_id1">
+            <ion-option *ngFor="let book of Allbooks$" value="{{book.id}}">{{book.title}}</ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label>Libro 2</ion-label>
+          <ion-select [(ngModel)]="book_id2">
+            <ion-option *ngFor="let book of Allbooks$" value="{{book.id}}">{{book.title}}</ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
 			<ion-input placeholder="Razon" [(ngModel)]="reason"></ion-input>
     </ion-item>
 	</ion-list>
