@@ -32,7 +32,10 @@ export class CreatesuggestionPage {
     if(this.book_id1 == this.book_id2){
       console.log("iguales");
       this.sameBook();
-    }else{   
+    }else if(this.reason == null){
+      this.nullReason();
+    }
+    else{   
       this.provider.createSuggestion(this.book_id1, this.book_id2, this.reason).subscribe(response => {
         console.log(response);
         this.navCtrl.push(InfobookPage, {
@@ -48,6 +51,14 @@ export class CreatesuggestionPage {
       });
       toast.present();
     } 
+
+    nullReason(){
+        const toast = this.toastCtrl.create({
+          message: 'Todos los campos son obligatorios',
+          duration: 3000
+        });
+        toast.present();
+      } 
 
     ionViewDidLoad() {
       console.log('ionViewDidLoad CreatesuggestionPage');
