@@ -68,6 +68,34 @@ query($id: Int!){
 }
 `;
 
+const queryUserReviewsByCode = gql`  
+query($id: Int!){
+  userReviewsByCode(code: $id) {
+    results {
+      review_id
+      book_id
+      user_id
+      creationdate
+      review
+      grade
+    }
+  }
+}
+`;
+
+const queryUserSuggestionsByCode = gql`  
+query($id: Int!){
+  userSuggestionsByCode(code: $id) {
+    results {
+      suggestion_id
+      user_id
+      book_id1
+      book_id2
+      reason
+    }
+  }
+}
+`;
 
 const queryAllBooklist = gql`  
 query allBooklist{
@@ -314,6 +342,32 @@ export class BooksProvider {
   getBookSuggestionsByCode(code: number): Observable<any> {
     const queryWatcher = this.apollo.watchQuery<any>({
       query: queryBookSuggestionsByCode,
+      variables: {
+        id: code
+      },
+      fetchPolicy: 'network-only'
+    });
+
+    return queryWatcher.valueChanges
+    .map(result => result.data.bookSuggestionsByCode.results);
+  }
+
+  getUserReviewsByCode(code: number): Observable<any> {
+    const queryWatcher = this.apollo.watchQuery<any>({
+      query: queryUserReviewsByCode,
+      variables: {
+        id: code
+      },
+      fetchPolicy: 'network-only'
+    });
+
+    return queryWatcher.valueChanges
+    .map(result => result.data.bookReviewsByCode.results);
+  }
+
+  getUserSuggestionsByCode(code: number): Observable<any> {
+    const queryWatcher = this.apollo.watchQuery<any>({
+      query: queryUserSuggestionsByCode,
       variables: {
         id: code
       },

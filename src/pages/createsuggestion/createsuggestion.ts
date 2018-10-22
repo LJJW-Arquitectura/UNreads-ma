@@ -34,7 +34,7 @@ export class CreatesuggestionPage {
   }
   
   createSuggestion(){
-    console.log(this.book_id1 , this.book_id2, this.reason);
+    console.log(this.myId, this.book_id1 , this.book_id2, this.reason);
   if(this.myId == 0){
     this.showMessage('Debe estar logeado para crear una sugerencia');
   }else if(this.book_id1 == this.book_id2){
@@ -43,7 +43,7 @@ export class CreatesuggestionPage {
       this.showMessage('Todos los campos son obligatorios');
     }
     else{   
-      this.provider.createSuggestion(this.myId,this.book_id1, this.book_id2, this.reason).subscribe(response => {
+      this.provider.createSuggestion(this.myId, this.book_id1, this.book_id2, this.reason).subscribe(response => {
         console.log(response);
         this.navCtrl.push(InfobookPage, {
           id: this.book_id1
