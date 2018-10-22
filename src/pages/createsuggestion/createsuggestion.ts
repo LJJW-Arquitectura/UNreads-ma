@@ -35,10 +35,8 @@ export class CreatesuggestionPage {
   
   createSuggestion(){
     console.log(this.myId, this.book_id1 , this.book_id2, this.reason);
-  if(this.myId == 0){
-    this.showMessage('Debe estar logeado para crear una sugerencia');
-  }else if(this.book_id1 == this.book_id2){
-    this.showMessage('Los libros a recomendar deben ser diferentes');
+    if(this.book_id1 == this.book_id2){
+      this.showMessage('Los libros a recomendar deben ser diferentes');
     }else if(this.reason == null){
       this.showMessage('Todos los campos son obligatorios');
     }

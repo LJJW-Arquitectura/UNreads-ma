@@ -8,6 +8,16 @@
 	</ion-navbar>
 </ion-header>
 
+<h1>Sugerencias:</h1>
+<ion-card *ngFor="let suggestion of (suggestions$| async);trackBy: trackByFn; let idx = index ">
+	<ion-card-content>
+		<p>
+			<strong>Libro sugerido:</strong>{{auxSuggestiontitle[idx]}}<br>
+			<strong>Razón: </strong>{{suggestion.reason}}
+		</p>
+	</ion-card-content>
+</ion-card>
+
 <ion-content> 
 		<h1>Reseñas:</h1>
 		<ion-card *ngFor="let review of (reviews$| async) ;let idx = index ">

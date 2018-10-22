@@ -7,10 +7,10 @@ import { GlobalProvider } from '../../providers/global/global';
 
 @IonicPage()
 @Component({
-	selector: 'page-myReviews',
-	templateUrl: 'myReviews.html',
+	selector: 'page-mySuggestions',
+	templateUrl: 'mySuggestions.html',
 })
-export class MyReviewsPage {
+export class MySuggestionsPage {
 	
 	reviews$
 	aux = []
