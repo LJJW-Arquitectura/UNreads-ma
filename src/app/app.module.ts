@@ -24,6 +24,7 @@ import { ReadlistPage } from '../pages/readlist/readlist';
 import { CreatebooklistPage } from '../pages/createbooklist/createbooklist';
 import { CreatebookPage } from '../pages/createbook/createbook'
 import { MyReviewsPage } from '../pages/myreviews/myreviews'
+import { MySuggestionsPage} from '../pages/mysuggestions/mysuggestions';
 
 import { StarRatingModule } from 'ionic3-star-rating';
 
@@ -44,6 +45,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
   CreatebookPage,
   ReadlistPage,
   MyReviewsPage,
+  MySuggestionsPage,
   ],
   imports: [
   BrowserModule,
@@ -68,6 +70,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
   CreatebookPage,
   ReadlistPage,
   MyReviewsPage,
+  MySuggestionsPage,
   ],
   providers: [
   StatusBar,
