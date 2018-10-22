@@ -15,10 +15,10 @@
 				<ion-card-title>
 					{{book.title}}
 				</ion-card-title>
-				<p>{{book.plot.slice(1,100)}} <i *ngIf=" book.plot.length > 50" >...</i></p>
+				<p>{{book.plot.slice(0,100)}} <i *ngIf=" book.plot.length > 50" >...</i></p>
 				<ion-row >
 					<ion-col text-left>
-						<button ion-button clear small color="primary">
+						<button ion-button clear small color="primary"  (click)="createReview($event, book.id, book.title)">
 							<ion-icon name='text'></ion-icon>
 							Reseñar
 						</button>

@@ -4,6 +4,7 @@ import { BooksProvider } from '../../providers/books/books';
 import { GlobalProvider } from '../../providers/global/global';
 import { Observable } from 'rxjs/Observable';  
 import { InfobookPage } from '../infobook/infobook';
+import { CreatereviewPage } from '../createreview/createreview';
 
 
 /**
@@ -46,6 +47,13 @@ import { InfobookPage } from '../infobook/infobook';
  		this.navCtrl.push(InfobookPage, {
  			id: book_id
  		});
- 	}
+	 }
+
+	createReview(event, book_id, book_title) {
+		this.navCtrl.push(CreatereviewPage, {
+			id: book_id,
+			title: book_title
+		});
+	}
 
  }
