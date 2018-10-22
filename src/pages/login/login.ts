@@ -51,24 +51,29 @@ export class LoginPage {
     toast.present();
   }
   login(){
-  	console.log("Username: "+this.username)
-  	console.log("Password: "+this.password)
+  	//console.log("Username: "+this.username)
+  	//console.log("Password: "+this.password)
     //Esta es la linea que no se digna funcionar hasta no darle doble click
-  	this.provider.getUserByUsernameAndPassword(this.username,this.password).subscribe(user =>
-    {
-      if(user!=undefined){
-        console.log("AuthId: "+user.id)
-        this.global.authenticatedId = user.id;
-        this.global.user = user.username;
-        this.presentToast();
-        this.navCtrl.setRoot(AllbooksPage);
-        this.navCtrl.popToRoot();
-      }
-      else{
-        this.noAuthToast();
-      }
-    });
-    
+    if(this.username == undefined || 
+      this.password == undefined ){
+      alert ("Please fill all fields")
+    }
+    else{
+    	this.provider.getUserByUsernameAndPassword(this.username,this.password).subscribe(user =>
+      {
+        if(user!=undefined){
+          console.log("AuthId: "+user.id)
+          this.global.authenticatedId = user.id;
+          this.global.user = user.username;
+          this.presentToast();
+          this.navCtrl.setRoot(AllbooksPage);
+          this.navCtrl.popToRoot();
+        }
+        else{
+          this.noAuthToast();
+        }
+      });
+    }
   }
   goRegister(){
   	this.navCtrl.push(RegisterPage);
