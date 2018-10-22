@@ -59,6 +59,7 @@ query($id: Int!){
   bookSuggestionsByCode(code: $id) {
     results {
       suggestion_id
+      user_id
       book_id1
       book_id2
       reason
@@ -152,8 +153,9 @@ const mutationCreateReview= gql`
 `;
 
 const mutationsCreateSuggestion= gql`
-mutation($book_id1: Int!, $book_id2: Int!, $reason: String!) {
+mutation($user_id: Int!, $book_id1: Int!, $book_id2: Int!, $reason: String!) {
   createSuggestion(suggestion: {
+    user_id: $user_id,
     book_id1: $book_id1, 
     book_id2: $book_id2, 
     reason: $reason
@@ -272,10 +274,11 @@ export class BooksProvider {
     })
   }
 
-  createSuggestion(book_id1: number, book_id2: number, reason: string): Observable<any> {  
+  createSuggestion(user_id: number, book_id1: number, book_id2: number, reason: string): Observable<any> {  
     return this.apollo.mutate({
       mutation: mutationsCreateSuggestion,
       variables: {
+        user_id: user_id,
         book_id1: book_id1,
         book_id2: book_id2,
         reason: reason
