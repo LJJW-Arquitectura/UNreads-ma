@@ -56,7 +56,6 @@ import { Observable } from 'rxjs/Observable';
      }
    }
 
-
    
    itemTapped(event, book_id) {
      this.navCtrl.popToRoot()
@@ -64,6 +63,7 @@ import { Observable } from 'rxjs/Observable';
        id: book_id
      });
    }
+   
    ionViewDidLoad() {
 
    }

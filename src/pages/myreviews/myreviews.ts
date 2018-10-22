@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
 import { Observable } from 'rxjs/Observable';  
 import { GlobalProvider } from '../../providers/global/global';
+import { InfobookPage } from '../infobook/infobook';
 
 
 @IonicPage()
@@ -22,14 +23,22 @@ export class MyReviewsPage {
 		public provider: BooksProvider) {
 			this.reviews$ = provider.getUserReviewsByCode(this.globalProvider.authenticatedId);
 			this.reviews$.subscribe(review =>{
+				if(review.length != 0){
 				for (var i = 0; i < review.length ; i++) {
 					provider.getBookById(review[i].book_id).subscribe(book =>{
 						this.aux.push(book.title)})
-					}
+					}}
 				});
 				this.myId = globalProvider.authenticatedId 
 				this.user = globalProvider.user 
 			} 
+			
+			itemTapped(event, book_id) {
+				this.navCtrl.popToRoot()
+				this.navCtrl.push(InfobookPage, {
+					id: book_id
+				});
+			}
 			
 		}
 		

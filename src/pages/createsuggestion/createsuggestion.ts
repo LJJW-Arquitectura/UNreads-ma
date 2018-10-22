@@ -42,7 +42,7 @@ export class CreatesuggestionPage {
     }
     else{   
       this.provider.createSuggestion(this.myId, this.book_id1, this.book_id2, this.reason).subscribe(response => {
-        console.log(response);
+        this.navCtrl.popToRoot();
         this.navCtrl.push(InfobookPage, {
           id: this.book_id1
         });

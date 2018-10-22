@@ -362,7 +362,7 @@ export class BooksProvider {
     });
 
     return queryWatcher.valueChanges
-    .map(result => result.data.bookReviewsByCode.results);
+    .map(result => result.data.userReviewsByCode.results);
   }
 
   getUserSuggestionsByCode(code: number): Observable<any> {
@@ -375,7 +375,7 @@ export class BooksProvider {
     });
 
     return queryWatcher.valueChanges
-    .map(result => result.data.bookSuggestionsByCode.results);
+    .map(result => result.data.userSuggestionsByCode.results);
   }
 
 }
