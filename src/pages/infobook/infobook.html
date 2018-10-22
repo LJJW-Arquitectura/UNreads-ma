@@ -43,10 +43,10 @@
 	</ion-list>	
 
 	<h1>Reseñas:</h1>
-	<ion-card *ngFor="let review of (reviews$| async) ;let idx = index ">
+	<ion-card *ngFor="let review of reviews$;let idx = index ">
 		<ion-card-content>
 			<p>
-				<strong>Usuario: </strong>{{aux[idx]}}<br>
+				<strong>Usuario: </strong>{{review.username}}<br>
 				<strong>Reseña: </strong>{{review.review}}
 			</p>
 			<ionic3-star-rating 
@@ -61,15 +61,15 @@
 </ion-card>
 
 <h1>Sugerencias:</h1>
-<ion-card *ngFor="let suggestion of (suggestions$| async);trackBy: trackByFn; let idx = index ">
+<ion-card *ngFor="let suggestion of suggestions$;trackBy: trackByFn; let idx = index ">
 	<ion-card-content>
 		<p>
-			<strong>Libro sugerido:</strong>{{auxSuggestiontitle[idx]}}<br>
+			<strong>Libro sugerido:</strong>{{suggestion.booktitle2}}<br>
 			<strong>Razón: </strong>{{suggestion.reason}}
 		</p>
 		<ion-row >
 			<ion-col text-right>
-				<button ion-button clear small color="primary" (click)="itemTapped($event, auxSuggestionid[idx])">
+				<button ion-button clear small color="primary" (click)="itemTapped($event, suggestion.book_id2)">
 					<ion-icon name='arrow-dropright'></ion-icon>
 					Ver mas sobre el libro sugerido
 				</button>

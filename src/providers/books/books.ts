@@ -49,6 +49,7 @@ query($id: Int!){
       creationdate
       review
       grade
+      username
     }
   }
 }
@@ -63,6 +64,9 @@ query($id: Int!){
       book_id1
       book_id2
       reason
+      username
+      booktitle2
+      booktitle1
     }
   }
 }
@@ -168,12 +172,13 @@ const mutationCreateBook= gql`
 `;
 
 const mutationCreateReview= gql`  
-  mutation($book_id: Int!, $user_id: Int!, $review: String!, $grade: Int!) {
+  mutation($book_id: Int!, $user_id: Int!, $review: String!, $grade: Int!,$username: String!) {
     createReview(review: {
       book_id: $book_id, 
       user_id: $user_id, 
       review: $review, 
-      grade: $grade
+      grade: $grade,
+      username: $username
     }){
       message
     } 
@@ -181,16 +186,19 @@ const mutationCreateReview= gql`
 `;
 
 const mutationsCreateSuggestion= gql`
-mutation($user_id: Int!, $book_id1: Int!, $book_id2: Int!, $reason: String!) {
-  createSuggestion(suggestion: {
-    user_id: $user_id,
-    book_id1: $book_id1, 
-    book_id2: $book_id2, 
-    reason: $reason
-  }){
-    message
-  } 
-}
+  mutation($user_id: Int!, $book_id1: Int!, $book_id2: Int!, $reason: String!,$book_title1: String!,$book_title2: String!,$username: String!) {
+    createSuggestion(suggestion: {
+      user_id: $user_id,
+      book_id1: $book_id1, 
+      book_id2: $book_id2, 
+      reason: $reason,
+      booktitle1: $book_title1,
+      booktitle2: $book_title2,
+      username: $username
+    }){
+      message
+    } 
+  }
 `;
 /*
   Generated class for the BooksProvider provider.
@@ -275,14 +283,15 @@ export class BooksProvider {
       error => console.log('Mutation Error:', error));
   }
   
-  createReview(book_id: number, user_id: number, review: string, grade: number): Observable<any> {  
+  createReview(book_id: number, user_id: number, review: string, grade: number,book_title: string,username:string): Observable<any> {  
     return this.apollo.mutate({
       mutation: mutationCreateReview,
       variables: {
         book_id: book_id, 
         user_id: user_id, 
         review: review, 
-        grade: grade
+        grade: grade,
+        username: username,
       }
     })
   }
@@ -302,14 +311,17 @@ export class BooksProvider {
     })
   }
 
-  createSuggestion(user_id: number, book_id1: number, book_id2: number, reason: string): Observable<any> {  
+  createSuggestion(user_id: number, book_id1: number, book_id2: number, reason: string,book_title1: string,book_title2:string,username:string): Observable<any> {  
     return this.apollo.mutate({
       mutation: mutationsCreateSuggestion,
       variables: {
         user_id: user_id,
         book_id1: book_id1,
         book_id2: book_id2,
-        reason: reason
+        reason: reason,
+        book_title1: book_title1,
+        book_title2: book_title2,
+        username: username
       }
     })
   }
