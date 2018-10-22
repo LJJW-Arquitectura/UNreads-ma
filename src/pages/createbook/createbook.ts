@@ -16,8 +16,8 @@ export class CreatebookPage {
 	numPages: number;
   isbn: string;
   plot: string;
-  authors: Array<string> = [];
-  genres: Array<string> = [];
+  authors: Array<string>;
+  genres: Array<string>;
   author: string;
   genre: string;
   id$
@@ -30,18 +30,30 @@ export class CreatebookPage {
   }
 
   addAuthor(){
+    if (!this.authors) {this.authors = []}
     this.authors.push(this.author);
   }
 
   addGenre(){
+    if (!this.genres) {this.genres = []}
     this.genres.push(this.genre);
   }
 
   createBook(){
-    this.provider.createBook(this.title, this.publiser, this.numPages, this.isbn, this.plot, this.authors, this.genres).subscribe(response => {
-      this.navCtrl.push(InfobookPage, {
-        id: response.data.createBook.id
-      });
-    })
+    if(this.title == undefined || 
+  		this.publiser == undefined || 
+      this.numPages == undefined ||
+      this.plot == undefined ||
+      this.authors == undefined ||
+      this.genres == undefined ||
+  		this.isbn == undefined){
+  		alert ("Please fill all fields")
+  	}else {
+      this.provider.createBook(this.title, this.publiser, this.numPages, this.isbn, this.plot, this.authors, this.genres).subscribe(response => {
+        this.navCtrl.push(InfobookPage, {
+          id: response.data.createBook.id
+        });
+      })
+    }
   }
 }
