@@ -21,24 +21,17 @@ export class MyReviewsPage {
 		public navParams: NavParams,
 		public globalProvider: GlobalProvider, 
 		public provider: BooksProvider) {
-			this.reviews$ = provider.getUserReviewsByCode(this.globalProvider.authenticatedId);
-			this.reviews$.subscribe(review =>{
-				if(review.length != 0){
-				for (var i = 0; i < review.length ; i++) {
-					provider.getBookById(review[i].book_id).subscribe(book =>{
-						this.aux.push(book.title)})
-					}}
-				});
-				this.myId = globalProvider.authenticatedId 
-				this.user = globalProvider.user 
-			} 
-			
-			itemTapped(event, book_id) {
-				this.navCtrl.popToRoot()
-				this.navCtrl.push(InfobookPage, {
-					id: book_id
-				});
-			}
-			
-		}
+		this.reviews$ = provider.getUserReviewsByCode(this.globalProvider.authenticatedId);
 		
+		this.myId = globalProvider.authenticatedId 
+		this.user = globalProvider.user 
+	} 
+	
+	itemTapped(event, book_id) {
+		this.navCtrl.popToRoot()
+		this.navCtrl.push(InfobookPage, {
+			id: book_id
+		});
+	}
+	
+}

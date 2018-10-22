@@ -13,7 +13,7 @@
 	<ion-card *ngFor="let review of (reviews$| async) ;let idx = index ">
 		<ion-card-content>
 			<p>
-				<strong>Libro: </strong>{{aux[idx]}}<br>
+				<strong>Libro: </strong>{{review.booktitle}}<br>
 				<strong>Reseña: </strong>{{review.review}}
 			</p>
 			<ionic3-star-rating 

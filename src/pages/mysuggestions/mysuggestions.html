@@ -13,8 +13,8 @@
 	<ion-card *ngFor="let suggestion of (suggestions$| async) ;let idx = index ">
 		<ion-card-content>	
 			<p>
-				<strong>Libro1: </strong>{{auxid1[idx]}}<br>
-				<strong>Libro2: </strong>{{auxid2[idx]}}<br>
+				<strong>Libro1: </strong>{{suggestion.booktitle1}}<br>
+				<strong>Libro2: </strong>{{suggestion.booktitle2}}<br>
 				<strong>Razón: </strong>{{suggestion.reason}}
 			</p>
 		<ion-row>

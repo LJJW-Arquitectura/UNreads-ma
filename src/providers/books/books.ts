@@ -95,7 +95,10 @@ query($id: Int!){
       user_id
       book_id1
       book_id2
+      booktitle1
+      booktitle2
       reason
+      username
     }
   }
 }
