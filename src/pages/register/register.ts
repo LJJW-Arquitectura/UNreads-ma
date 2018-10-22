@@ -46,13 +46,15 @@ export class RegisterPage {
   		this.email == undefined){
   		alert ("Please fill all fields")
   	}
-  	if(this.password != this.repassword){
+  	else if(this.password != this.repassword){
   		alert ("Passwords do not match")
   	}
-  	console.log(this.password);
-  	this.provider.createUser(this.username, this.password, this.email);
-  	this.presentToast();
-  	this.viewCtrl.dismiss();
+  	else{
+	  	console.log(this.password);
+	  	this.provider.createUser(this.username, this.password, this.email);
+	  	this.presentToast();
+	  	this.viewCtrl.dismiss();
+	  }
 
   }
   
