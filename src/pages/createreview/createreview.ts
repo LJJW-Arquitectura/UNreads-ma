@@ -4,6 +4,7 @@ import { GlobalProvider } from '../../providers/global/global';
 import { BooksProvider } from '../../providers/books/books';
 import { Events } from 'ionic-angular';
 import { InfobookPage } from '../infobook/infobook';
+import { MyReviewsPage} from '../myreviews/myreviews';
 
 @IonicPage()
 @Component({
@@ -40,9 +41,11 @@ export class CreatereviewPage {
     } else {
       this.provider.createReview(this.book_id, this.myId, this.review, this.grade,this.book_title,this.user).subscribe(response => {
         this.navCtrl.pop();
+        this.navCtrl.push(MyReviewsPage); 
         this.navCtrl.push(InfobookPage, {
           id: this.book_id
         });
+
       })
     }
   }

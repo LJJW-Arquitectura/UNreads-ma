@@ -78,7 +78,9 @@ query($id: Int!){
     results {
       review_id
       book_id
+      booktitle
       user_id
+      username
       creationdate
       review
       grade
@@ -175,13 +177,14 @@ const mutationCreateBook= gql`
 `;
 
 const mutationCreateReview= gql`  
-  mutation($book_id: Int!, $user_id: Int!, $review: String!, $grade: Int!,$username: String!) {
+  mutation($book_id: Int!, $user_id: Int!, $review: String!, $grade: Int!,$username: String!, $booktitle: String!) {
     createReview(review: {
       book_id: $book_id, 
       user_id: $user_id, 
       review: $review, 
       grade: $grade,
-      username: $username
+      username: $username,
+      booktitle: $booktitle
     }){
       message
     } 
@@ -286,7 +289,7 @@ export class BooksProvider {
       error => console.log('Mutation Error:', error));
   }
   
-  createReview(book_id: number, user_id: number, review: string, grade: number,book_title: string,username:string): Observable<any> {  
+  createReview(book_id: number, user_id: number, review: string, grade: number,book_title: string, username:string): Observable<any> {  
     return this.apollo.mutate({
       mutation: mutationCreateReview,
       variables: {
@@ -295,6 +298,7 @@ export class BooksProvider {
         review: review, 
         grade: grade,
         username: username,
+        booktitle: book_title,
       }
     })
   }

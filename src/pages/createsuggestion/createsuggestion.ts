@@ -4,6 +4,7 @@ import { BooksProvider } from '../../providers/books/books';
 import { InfobookPage } from '../infobook/infobook';
 import { ToastController } from 'ionic-angular';
 import { GlobalProvider } from "../../providers/global/global";
+import { MySuggestionsPage} from '../mysuggestions/mysuggestions';
 
 /**
 * Generated class for the CreatesuggestionPage page.
@@ -48,6 +49,8 @@ export class CreatesuggestionPage {
     }
     else{   
       this.provider.createSuggestion(this.myId, this.book1[0], this.book2[0], this.reason,this.book1[1], this.book2[1],this.user).subscribe(response => {      
+        
+        this.navCtrl.setRoot(MySuggestionsPage);
         this.navCtrl.popToRoot();
         this.navCtrl.push(InfobookPage, {
           id: this.book1[0]
