@@ -13,6 +13,7 @@
 
 <ion-content> 
 	<ion-searchbar
+  placeholder="Filter Items"
 	[(ngModel)]="searchTerm"
 	(ionInput)="setFilteredItems()"
 	(ionCancel)="cancel()">
