@@ -6,6 +6,8 @@
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="*" />
+    <access origin="http://192.168.0.8" />
+    <allow-navigation href="http://192.168.0.8"/>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
