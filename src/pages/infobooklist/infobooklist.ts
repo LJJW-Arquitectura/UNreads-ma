@@ -12,40 +12,40 @@ import { CreatereviewPage } from '../createreview/createreview';
  * Ionic pages and navigation.
  */
 
- @IonicPage()
- @Component({
- 	selector: 'page-infobooklist',
- 	templateUrl: 'infobooklist.html',
- })
- export class InfobooklistPage {
+@IonicPage()
+@Component({
+	selector: 'page-infobooklist',
+	templateUrl: 'infobooklist.html',
+})
+export class InfobooklistPage {
 
- 	list$
- 	books$ = []
- 	ready = false
- 	readed = false
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider) {
- 		this.list$ = navParams.get('list')
- 		for (var i = this.list$.books.length - 1; i >= 0; i--) {
- 			provider.getBookById(this.list$.books[i]).subscribe(book => this.books$.push(book))
- 		} 		
- 		this.ready = true
- 	}
-
- 	ionViewDidLoad() {
- 		console.log('ionViewDidLoad InfobooklistPage');
- 	}
-
- 	itemTapped(event, book_id) {
-		this.navCtrl.push(InfobookPage, {
-		id: book_id
-		});
+	list$
+	books$ = []
+	ready = false
+	readed = false
+	constructor(public navCtrl: NavController, public navParams: NavParams, public provider: BooksProvider) {
+		this.list$ = navParams.get('list')
+		for (var i = this.list$.books.length - 1; i >= 0; i--) {
+			provider.getBookById(this.list$.books[i]).subscribe(book => this.books$.push(book))
+		} 		
+		this.ready = true
 	}
 
-	createReview(event, book_id, book_title) {
-		this.navCtrl.push(CreatereviewPage, {
-			id: book_id,
-			title: book_title
-		});
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad InfobooklistPage');
 	}
 
- }
+	itemTapped(event, book_id) {
+	this.navCtrl.push(InfobookPage, {
+	id: book_id
+	});
+}
+
+createReview(event, book_id, book_title) {
+	this.navCtrl.push(CreatereviewPage, {
+		id: book_id,
+		title: book_title
+	});
+}
+
+}

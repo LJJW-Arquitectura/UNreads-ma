@@ -19,9 +19,9 @@ const queryUserByUsernameAndPassword = gql`
   query($username:String!, $password:String!) {
   	userByUsernameAndPassword(username: $username, password: $password){
       username
-      password
       email
       id
+      token
     }
   }
 `;
@@ -67,7 +67,7 @@ export class UserProvider {
     });
 
     return queryWatcher.valueChanges
-      .map(result => result.data.allUsers);;
+      .map(result => result.data.allUsers);
   }
 
   createUser(Username: string, Password: string, Email: string): void {  
@@ -89,7 +89,7 @@ export class UserProvider {
       variables: {
       	username: Username,
       	password: Password
-      },
+      }, 
       fetchPolicy: 'network-only'
     });
     return queryWatcher.valueChanges
